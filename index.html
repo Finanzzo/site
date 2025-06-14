@@ -11,17 +11,16 @@
       font-family: Arial, sans-serif;
       background-color: #002D4C;
       color: white;
-      overflow-x: hidden;
+      overflow-x: hidden; /* Evita scroll horizontal */
     }
 
     header {
       background-color: #002D4C;
-      padding: 20px 30px;
+      padding: 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: fixed;
-      top: 0;
+      position: relative;
       width: 100%;
       z-index: 999;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
@@ -29,66 +28,27 @@
 
     header img {
       height: 50px;
-      cursor: pointer;
-    }
-
-    nav {
-      display: flex;
-      gap: 20px;
     }
 
     nav a {
       color: white;
       text-decoration: none;
+      margin: 0 10px;
       font-weight: bold;
-      padding: 6px 8px;
-      border-radius: 4px;
-      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     nav a:hover {
-      background-color: #00aaff;
-      color: #002D4C;
+      color: #00aaff;
+      transition: color 0.3s ease;
     }
 
-    /* Botão do menu sanduíche */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      width: 30px;
-      height: 22px;
-      justify-content: space-between;
-    }
-
-    .menu-toggle span {
-      background: white;
-      height: 4px;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-
-    /* Transformação do menu quando aberto */
-    .menu-toggle.open span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    .menu-toggle.open span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .menu-toggle.open span:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
-    }
-
-    /* Hero */
     .hero {
       position: relative;
       background-image: url('notas-100.jpg');
       background-size: cover;
       background-position: center;
       text-align: center;
-      padding: 130px 20px 100px 20px; /* Ajuste para header fixo */
+      padding: 100px 20px;
       margin-bottom: 40px;
     }
 
@@ -119,7 +79,7 @@
       margin: auto;
     }
 
-    /* Seções */
+    /* Seções com fundo leve, bordas arredondadas e sombra */
     .section {
       background: linear-gradient(to right, #003d73, #00294c);
       padding: 70px 20px 70px 20px;
@@ -128,6 +88,7 @@
       box-shadow: 0 0 20px rgba(0, 45, 76, 0.4);
     }
 
+    /* Títulos das seções com barra decorativa */
     .section h2 {
       font-size: 2.4rem;
       color: #00aaff;
@@ -318,35 +279,6 @@
 
     /* Responsividade */
     @media (max-width: 768px) {
-      nav {
-        position: fixed;
-        top: 80px;
-        right: 0;
-        background-color: #002D4C;
-        flex-direction: column;
-        width: 220px;
-        height: calc(100vh - 80px);
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        padding-top: 20px;
-        box-shadow: -4px 0 10px rgba(0,0,0,0.3);
-        z-index: 998;
-      }
-
-      nav.open {
-        transform: translateX(0);
-      }
-
-      nav a {
-        padding: 12px 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        font-size: 18px;
-      }
-
-      .menu-toggle {
-        display: flex;
-      }
-
       .services {
         flex-direction: column;
         align-items: center;
@@ -379,18 +311,13 @@
 <body>
 
   <header>
-    <img src="FINANZZO Logo.png" alt="FINANZZO Logo" />
-    <nav id="nav-menu">
-      <a href="#servicos" onclick="closeMenu()">Serviços</a>
-      <a href="#depoimentos" onclick="closeMenu()">Depoimentos</a>
-      <a href="#sobre" onclick="closeMenu()">Sobre</a>
-      <a href="#contato" onclick="closeMenu()">Contato</a>
+    <img src="FINANZZO Logo.png" alt="FINANZZO Logo">
+    <nav>
+      <a href="#servicos">Serviços</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
     </nav>
-    <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" role="button" tabindex="0">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
   </header>
 
   <main>
@@ -460,7 +387,7 @@
     <section class="form-cta">
       <h3>Solicite uma simulação</h3>
       <form action="https://formsubmit.co/finanzzo@finanzzosolucoes.com.br" method="POST">
-        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_captcha" value="false">
         <input type="text" name="nome" placeholder="Seu nome" required />
         <input type="tel" name="telefone" placeholder="Seu telefone" required />
         <select name="servico" required>
@@ -477,50 +404,28 @@
         <p class="lgpd">Ao enviar, você concorda com nossa <a href="privacy.html">Política de Privacidade</a> e o uso dos seus dados conforme a LGPD.</p>
       </form>
     </section>
+
   </main>
 
-  <a
-    class="whatsapp-button"
-    href="https://wa.me/5537988285460?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20uma%20simula%C3%A7%C3%A3o"
-    target="_blank"
-    aria-label="WhatsApp"
-  >
+  <a class="whatsapp-button" href="https://wa.me/5537988285460?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20empr%C3%A9stimo!" target="_blank" aria-label="WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
 
   <footer>
-    <p>© 2024 FINANZZO Soluções Financeiras - Todos os direitos reservados.</p>
     <div class="footer-links">
-      <a href="#servicos">Serviços</a> |
-      <a href="#depoimentos">Depoimentos</a> |
-      <a href="#sobre">Sobre</a> |
-      <a href="#contato">Contato</a>
+      <a href="https://www.instagram.com/finanzzo_solucoes" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a> |
+      <a href="mailto:finanzzo@finanzzosolucoes.com.br"><i class="fas fa-envelope"></i> E-mail</a> |
+      <a href="https://wa.me/5537988285460" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
+
+    <div style="margin-top: 20px;">
+      <p>Visitantes desde Junho/2025:</p>
+      <a href="https://www.hitwebcounter.com" target="_blank" rel="noopener">
+        <img src="https://hitwebcounter.com/counter/counter.php?page=8375924&style=0006&nbdigits=5&type=page&initCount=00000"
+          title="Contador de Visitas" alt="Contador de Visitantes" />
+      </a>
+    </div>
+    <p style="margin-top: 20px;">&copy; 2025 FINANZZO - Todos os direitos reservados.</p>
   </footer>
-
-  <script>
-    const menuToggle = document.getElementById('menu-toggle');
-    const navMenu = document.getElementById('nav-menu');
-
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('open');
-      menuToggle.classList.toggle('open');
-    });
-
-    // Fecha o menu ao clicar em um link (bom para mobile)
-    function closeMenu() {
-      navMenu.classList.remove('open');
-      menuToggle.classList.remove('open');
-    }
-
-    // Permite abrir/fechar menu com teclado (Enter ou Espaço)
-    menuToggle.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        menuToggle.click();
-      }
-    });
-  </script>
-
 </body>
 </html>
