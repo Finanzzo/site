@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit("Erro: Dados do formulário inválidos.");
     }
 
-    $destinatario = "seu-email@exemplo.com"; // <--- coloque seu e-mail real aqui
+    $destinatario = "finanzzo@finanzzosolucoes.com.br"; // <--- coloque seu e-mail real aqui
     $assunto = "Mensagem do site Finanzzo";
 
     $corpo = "Nome: $nome\n";
