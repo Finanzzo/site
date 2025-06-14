@@ -38,37 +38,79 @@
       height: 50px;
     }
 
+    /* Menu desktop */
     nav {
       display: flex;
-      gap: 15px;
+      gap: 20px;
     }
 
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
-      padding: 8px 12px;
-      border-radius: 6px;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      font-size: 1rem;
+      transition: color 0.3s ease;
     }
 
     nav a:hover {
       color: #00aaff;
-      background-color: rgba(0, 170, 255, 0.1);
     }
 
-    /* Botão do menu hambúrguer - oculto no desktop */
+    /* Menu hamburguer - mobile */
     .menu-toggle {
       display: none;
-      font-size: 28px;
-      color: white;
-      background: none;
-      border: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 24px;
       cursor: pointer;
       z-index: 1001;
     }
 
-    /* Hero e outras seções permanecem iguais... */
+    .menu-toggle span {
+      display: block;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* Navegação mobile (fechada por padrão) */
+    nav.mobile-nav {
+      display: none;
+      position: fixed;
+      top: 70px; /* abaixo do header */
+      right: 0;
+      background-color: #002D4C;
+      width: 200px;
+      height: calc(100vh - 70px);
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: -4px 0 8px rgba(0,0,0,0.3);
+      border-left: 2px solid #00aaff;
+      z-index: 1000;
+    }
+
+    nav.mobile-nav a {
+      margin: 15px 0;
+      font-size: 1.2rem;
+    }
+
+    nav.mobile-nav.show {
+      display: flex;
+    }
+
+    /* Animar transform do hamburguer quando aberto */
+    .menu-toggle.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
     .hero {
       position: relative;
       background-image: url('notas-100.jpg');
@@ -93,6 +135,8 @@
       position: relative;
       z-index: 2;
       text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+      margin: 0 auto;
+      max-width: 600px;
     }
 
     .hero h1 {
@@ -102,11 +146,9 @@
 
     .hero p {
       font-size: 20px;
-      max-width: 600px;
-      margin: auto;
     }
 
-    /* Seções */
+    /* Seções com fundo leve, bordas arredondadas e sombra */
     .section {
       background: linear-gradient(to right, #003d73, #00294c);
       padding: 70px 20px 70px 20px;
@@ -115,6 +157,7 @@
       box-shadow: 0 0 20px rgba(0, 45, 76, 0.4);
     }
 
+    /* Títulos das seções com barra decorativa */
     .section h2 {
       font-size: 2.4rem;
       color: #00aaff;
@@ -142,6 +185,7 @@
       box-shadow: 0 2px 8px rgba(0, 170, 255, 0.5);
     }
 
+    /* Serviços */
     .services {
       display: flex;
       flex-wrap: wrap;
@@ -170,6 +214,7 @@
       color: #0077b6;
     }
 
+    /* Depoimentos */
     .testimonials {
       display: flex;
       flex-direction: column;
@@ -193,6 +238,7 @@
       box-shadow: 0 12px 24px rgba(0, 170, 255, 0.4);
     }
 
+    /* Botão WhatsApp fixo */
     .whatsapp-button {
       position: fixed;
       bottom: 20px;
@@ -219,6 +265,7 @@
       100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0); }
     }
 
+    /* Formulário de CTA */
     .form-cta {
       background: #ffffff;
       color: #002D4C;
@@ -278,6 +325,7 @@
       margin-top: 10px;
     }
 
+    /* Footer */
     footer {
       background-color: #001B2F;
       color: white;
@@ -299,7 +347,39 @@
     }
 
     /* Responsividade */
+
+    /* Mobile */
     @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .hero {
+        padding: 70px 15px;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .section {
+        margin: 30px 10px;
+        padding: 50px 15px;
+      }
+
+      .section h2 {
+        font-size: 2rem;
+        max-width: 100%;
+      }
+
       .services {
         flex-direction: column;
         align-items: center;
@@ -316,56 +396,25 @@
       .testimonial {
         width: 90%;
       }
-
-      .section {
-        margin: 30px 10px;
-        padding: 50px 15px;
-      }
-
-      .section h2 {
-        font-size: 2rem;
-        max-width: 100%;
-      }
-
-      /* Menu hambúrguer - exibe botão e oculta menu */
-      nav {
-        position: fixed;
-        top: 0;
-        right: -250px; /* começa escondido */
-        height: 100vh;
-        width: 250px;
-        background-color: #002D4C;
-        flex-direction: column;
-        padding-top: 70px;
-        gap: 20px;
-        transition: right 0.3s ease;
-        box-shadow: -3px 0 8px rgba(0,0,0,0.4);
-        z-index: 999;
-      }
-
-      nav.show {
-        right: 0;
-      }
-
-      nav a {
-        font-size: 1.2rem;
-        margin: 0 20px;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="FINANZZO Logo.png" alt="FINANZZO Logo">
-    <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
-      <i class="fas fa-bars"></i>
-    </button>
-    <nav id="primary-navigation">
+    <img src="FINANZZO Logo.png" alt="FINANZZO Logo" />
+    <div class="menu-toggle" aria-label="Abrir menu" role="button" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="desktop-nav">
+      <a href="#servicos">Serviços</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <nav class="mobile-nav" aria-hidden="true">
       <a href="#servicos">Serviços</a>
       <a href="#depoimentos">Depoimentos</a>
       <a href="#sobre">Sobre</a>
@@ -454,30 +503,53 @@
         </select>
         <textarea name="mensagem" placeholder="Sua mensagem" rows="4" required></textarea>
         <button type="submit">Enviar</button>
-        <p class="lgpd">Ao enviar, você concorda com nossa <a href="privacy.html">Política de Privacidade</a> e o uso dos seus dados conforme a LGPD.</p>
+        <p class="lgpd">Seus dados são protegidos conforme a LGPD. Não compartilhamos suas informações.</p>
       </form>
     </section>
   </main>
 
-  <a class="whatsapp-button" href="https://wa.me/5537988285460?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20empr%C3%A9stimo!" target="_blank" aria-label="WhatsApp">
+  <a href="https://wa.me/5537988285460" target="_blank" rel="noopener noreferrer" class="whatsapp-button" aria-label="Contato WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
 
   <footer>
+    <p>&copy; 2025 FINANZZO Soluções Financeiras. Todos os direitos reservados.</p>
     <div class="footer-links">
-      <a href="https://www.instagram.com/finanzzo_solucoes" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a> |
-      <a href="mailto:finanzzo@finanzzosolucoes.com.br"><i class="fas fa-envelope"></i> E-mail</a> |
-      <a href="https://wa.me/5537988285460" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a href="https://www.facebook.com/cantinhodeminass" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a> |
+      <a href="https://instagram.com/finanzzo" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
     </div>
-
-    <div style="margin-top: 20px;">
-      <p>Visitantes desde Junho/2025:</p>
-      <a href="https://www.hitwebcounter.com" target="_blank" rel="noopener">
-        <img src="https://hitwebcounter.com/counter/counter.php?page=8375924&style=0006&nbdigits=5&type=page&initCount=00000"
-          title="Contador de Visitas" alt="Contador de Visitantes" />
-      </a>
-    </div>
-    <p style="margin-top: 20px;">&copy; 2025 FINANZZO - Todos os direitos reservados.</p>
   </footer>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileNav = document.querySelector('nav.mobile-nav');
+
+    function toggleMenu() {
+      menuToggle.classList.toggle('open');
+      mobileNav.classList.toggle('show');
+      const expanded = menuToggle.classList.contains('open');
+      mobileNav.setAttribute('aria-hidden', !expanded);
+      menuToggle.setAttribute('aria-expanded', expanded);
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+
+    // Acessibilidade para abrir menu via teclado
+    menuToggle.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMenu();
+      }
+    });
+
+    // Fecha menu ao clicar em link mobile
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (mobileNav.classList.contains('show')) {
+          toggleMenu();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
