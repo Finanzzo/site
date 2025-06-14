@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $assunto = "Mensagem do site Finanzzo";
 
     $corpo = "Nome: $nome\n";
-    $corpo .= "Email: $email\n\n";
+    $corpo .= "Telefone: $telefone\n\n";
     $corpo .= "Mensagem:\n$mensagem\n";
 
     $headers = "From: $email\r\n";
