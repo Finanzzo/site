@@ -38,18 +38,37 @@
       height: 50px;
     }
 
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+
     nav a {
       color: white;
       text-decoration: none;
-      margin: 0 10px;
       font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     nav a:hover {
       color: #00aaff;
-      transition: color 0.3s ease;
+      background-color: rgba(0, 170, 255, 0.1);
     }
 
+    /* Botão do menu hambúrguer - oculto no desktop */
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    /* Hero e outras seções permanecem iguais... */
     .hero {
       position: relative;
       background-image: url('notas-100.jpg');
@@ -87,7 +106,7 @@
       margin: auto;
     }
 
-    /* Seções com fundo leve, bordas arredondadas e sombra */
+    /* Seções */
     .section {
       background: linear-gradient(to right, #003d73, #00294c);
       padding: 70px 20px 70px 20px;
@@ -96,7 +115,6 @@
       box-shadow: 0 0 20px rgba(0, 45, 76, 0.4);
     }
 
-    /* Títulos das seções com barra decorativa */
     .section h2 {
       font-size: 2.4rem;
       color: #00aaff;
@@ -124,7 +142,6 @@
       box-shadow: 0 2px 8px rgba(0, 170, 255, 0.5);
     }
 
-    /* Serviços */
     .services {
       display: flex;
       flex-wrap: wrap;
@@ -153,7 +170,6 @@
       color: #0077b6;
     }
 
-    /* Depoimentos */
     .testimonials {
       display: flex;
       flex-direction: column;
@@ -177,7 +193,6 @@
       box-shadow: 0 12px 24px rgba(0, 170, 255, 0.4);
     }
 
-    /* Botão WhatsApp fixo */
     .whatsapp-button {
       position: fixed;
       bottom: 20px;
@@ -204,7 +219,6 @@
       100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0); }
     }
 
-    /* Formulário de CTA */
     .form-cta {
       background: #ffffff;
       color: #002D4C;
@@ -264,7 +278,6 @@
       margin-top: 10px;
     }
 
-    /* Footer */
     footer {
       background-color: #001B2F;
       color: white;
@@ -313,6 +326,35 @@
         font-size: 2rem;
         max-width: 100%;
       }
+
+      /* Menu hambúrguer - exibe botão e oculta menu */
+      nav {
+        position: fixed;
+        top: 0;
+        right: -250px; /* começa escondido */
+        height: 100vh;
+        width: 250px;
+        background-color: #002D4C;
+        flex-direction: column;
+        padding-top: 70px;
+        gap: 20px;
+        transition: right 0.3s ease;
+        box-shadow: -3px 0 8px rgba(0,0,0,0.4);
+        z-index: 999;
+      }
+
+      nav.show {
+        right: 0;
+      }
+
+      nav a {
+        font-size: 1.2rem;
+        margin: 0 20px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
     }
   </style>
 </head>
@@ -320,7 +362,10 @@
 
   <header>
     <img src="FINANZZO Logo.png" alt="FINANZZO Logo">
-    <nav>
+    <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav id="primary-navigation">
       <a href="#servicos">Serviços</a>
       <a href="#depoimentos">Depoimentos</a>
       <a href="#sobre">Sobre</a>
