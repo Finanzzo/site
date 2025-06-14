@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FINANZZO - Soluções Financeiras</title>
   <style>
     body {
@@ -10,7 +10,73 @@
       font-family: Arial, sans-serif;
       background-color: #002D4C;
       color: white;
-      scroll-behavior: smooth;
+    }
+
+    /* CTA fixa no topo */
+    #cta-fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #004a80;
+      padding: 10px 20px;
+      z-index: 1100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    #cta-fixed h3 {
+      margin: 0;
+      font-size: 18px;
+      flex: 1 1 200px;
+    }
+
+    #cta-form {
+      display: flex;
+      gap: 10px;
+      flex: 2 1 400px;
+      flex-wrap: wrap;
+    }
+
+    #cta-form input, #cta-form select, #cta-form button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    #cta-form input, #cta-form select {
+      flex: 1 1 120px;
+    }
+
+    #cta-form button {
+      background-color: #25D366;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      flex: 0 0 auto;
+      transition: background-color 0.3s ease;
+    }
+
+    #cta-form button:hover {
+      background-color: #1ebc59;
+    }
+
+    #lgpd-selo {
+      font-size: 12px;
+      color: #b8d9e7;
+      flex: 1 1 200px;
+      text-align: right;
+      font-style: italic;
+    }
+
+    /* Espaço para não ficar o conteúdo escondido atrás da CTA fixa */
+    main {
+      padding-top: 80px;
     }
 
     header {
@@ -25,6 +91,18 @@
       width: 100%;
       z-index: 999;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: #002D4C;
+      opacity: 0.2;
+      z-index: 1;
     }
 
     header * {
@@ -45,10 +123,6 @@
       display: inline-block;
       min-width: 80px;
       text-align: center;
-      transition: color 0.3s ease;
-    }
-    nav a:hover {
-      color: #25D366;
     }
 
     .hero {
@@ -64,7 +138,10 @@
     .hero::before {
       content: "";
       position: absolute;
-      top: 0; right: 0; bottom: 0; left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
       background-color: #002D4C;
       opacity: 0.8;
       z-index: 1;
@@ -74,7 +151,7 @@
     .hero p {
       position: relative;
       z-index: 2;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
     }
 
     .hero h1 {
@@ -91,8 +168,6 @@
     .section {
       padding: 60px 20px;
       text-align: center;
-      max-width: 1100px;
-      margin: auto;
     }
 
     .services {
@@ -107,24 +182,25 @@
       color: #002D4C;
       padding: 30px;
       border-radius: 10px;
-      width: 280px;
+      width: 250px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
       text-align: left;
       position: relative;
     }
 
+    /* Ícones nos serviços */
+    .service-box i {
+      color: #25D366;
+      margin-right: 10px;
+      font-size: 24px;
+      vertical-align: middle;
+    }
+
     .service-box h3 {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 22px;
       margin-bottom: 15px;
-    }
-
-    .service-icon {
-      color: #25D366;
-      font-size: 28px;
-      flex-shrink: 0;
+      font-size: 20px;
     }
 
     .testimonials {
@@ -133,9 +209,6 @@
       align-items: center;
       gap: 20px;
       margin-top: 40px;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     .testimonial {
@@ -148,113 +221,6 @@
       font-style: italic;
     }
 
-    /* FAQ */
-    .faq-container {
-      max-width: 900px;
-      margin: 40px auto 80px;
-      text-align: left;
-    }
-    .faq-container h2 {
-      margin-bottom: 30px;
-      color: white;
-      text-align: center;
-    }
-    .faq-item {
-      background: rgba(255,255,255,0.1);
-      margin-bottom: 15px;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 0 6px rgba(0,0,0,0.2);
-    }
-    .faq-question {
-      cursor: pointer;
-      padding: 20px;
-      font-weight: bold;
-      position: relative;
-      user-select: none;
-    }
-    .faq-question::after {
-      content: "+";
-      position: absolute;
-      right: 20px;
-      font-size: 24px;
-      transition: transform 0.3s ease;
-    }
-    .faq-item.active .faq-question::after {
-      content: "-";
-      transform: rotate(180deg);
-    }
-    .faq-answer {
-      padding: 0 20px 20px;
-      display: none;
-      color: #cce4ff;
-      font-weight: normal;
-      line-height: 1.4;
-    }
-    .faq-item.active .faq-answer {
-      display: block;
-    }
-
-    /* Formulário */
-    form {
-      background: white;
-      color: #002D4C;
-      padding: 30px 40px;
-      max-width: 500px;
-      margin: 40px auto;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.15);
-      text-align: left;
-    }
-    form h2 {
-      margin-bottom: 20px;
-      color: #002D4C;
-      text-align: center;
-    }
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-      resize: vertical;
-      box-sizing: border-box;
-    }
-    button[type="submit"] {
-      background-color: #25D366;
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      width: 100%;
-    }
-    button[type="submit"]:hover {
-      background-color: #1ebc59;
-    }
-
-    /* Selo LGPD */
-    .lgpd-selo {
-      background: #001B2F;
-      color: #ccc;
-      font-size: 14px;
-      padding: 12px 20px;
-      border-radius: 8px;
-      max-width: 500px;
-      margin: 30px auto 60px;
-      text-align: center;
-      box-shadow: 0 0 8px rgba(0,0,0,0.15);
-    }
-
-    /* WhatsApp botão flutuante */
     .whatsapp-button {
       position: fixed;
       bottom: 20px;
@@ -274,9 +240,11 @@
       z-index: 1000;
       animation: pulse 2s infinite;
     }
+
     .whatsapp-button:hover {
       background-color: #1ebc59;
     }
+
     @keyframes pulse {
       0% {
         transform: scale(1);
@@ -292,62 +260,47 @@
       }
     }
 
-    /* CTA Fixo topo */
-    .cta-fixo {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background-color: #25D366;
-      color: white;
-      font-weight: bold;
-      padding: 14px 20px;
-      border-radius: 50px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      cursor: pointer;
-      z-index: 1100;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-    }
-    .cta-fixo:hover {
-      background-color: #1ebc59;
-    }
-
-    /* Rodapé */
     footer {
       background-color: #001B2F;
       text-align: center;
-      padding: 30px 20px 50px;
+      padding: 20px;
       font-size: 14px;
-      color: #ccc;
-      margin-top: 60px;
+      color: white;
     }
+
     footer .footer-links {
-      margin: 15px 0 30px;
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
     }
+
     footer .footer-links a {
       color: #25D366;
-      margin: 0 10px;
       text-decoration: none;
       font-weight: bold;
       transition: color 0.3s ease;
     }
+
     footer .footer-links a:hover {
       color: #1ebc59;
     }
+
+    footer .social-icons {
+      margin-top: 10px;
+    }
+
     footer .social-icons a {
+      color: white;
       margin: 0 10px;
-      color: #25D366;
       font-size: 24px;
+      text-decoration: none;
       transition: color 0.3s ease;
     }
+
     footer .social-icons a:hover {
-      color: #1ebc59;
-    }
-    footer p {
-      margin: 10px 0 0;
+      color: #25D366;
     }
 
     @media (max-width: 768px) {
@@ -371,7 +324,7 @@
       nav a {
         margin: 0;
         padding: 10px 0;
-        border-bottom: 1px solid rgba(255,255,255,0.2);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         width: 100%;
       }
 
@@ -403,14 +356,27 @@
         font-size: 24px;
       }
 
-      form {
-        width: 90%;
-        padding: 20px;
+      #cta-fixed {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
       }
 
-      .faq-container {
-        width: 90%;
-        margin: 30px auto 60px;
+      #cta-fixed h3, #lgpd-selo {
+        text-align: left;
+        flex: 1 1 100%;
+      }
+
+      #cta-form {
+        flex: 1 1 100%;
+      }
+
+      #cta-form input, #cta-form select {
+        flex: 1 1 100%;
+      }
+
+      #cta-form button {
+        flex: 1 1 100%;
       }
     }
   </style>
@@ -420,6 +386,27 @@
   />
 </head>
 <body>
+  <!-- CTA Fixa no rodapé -->
+  <div id="cta-fixed" role="banner" aria-label="Simule agora seu empréstimo">
+    <h3>👉 Simule agora seu empréstimo!</h3>
+    <form id="cta-form" action="mailto:seuemail@dominio.com" method="POST" enctype="text/plain">
+      <input type="text" name="Nome" placeholder="Seu nome" required aria-label="Nome" />
+      <input type="tel" name="Telefone" placeholder="Telefone" required aria-label="Telefone" pattern="[\d\s\-\+\(\)]{8,}" />
+      <select name="Servico" required aria-label="Tipo de serviço">
+        <option value="" disabled selected>Selecione o serviço</option>
+        <option value="INSS">INSS</option>
+        <option value="SIAPE">SIAPE</option>
+        <option value="CLT">CLT</option>
+        <option value="FGTS">FGTS</option>
+        <option value="Outros">Outros</option>
+      </select>
+      <button type="submit">Enviar</button>
+    </form>
+    <div id="lgpd-selo" aria-live="polite" aria-atomic="true">
+      🔒 Seus dados estão seguros. Atuamos em conformidade com a LGPD.
+    </div>
+  </div>
+
   <header>
     <img src="FINANZZO Logo.png" alt="FINANZZO Logo" />
     <nav>
@@ -427,20 +414,14 @@
       <a href="#depoimentos">Depoimentos</a>
       <a href="#sobre">Sobre</a>
       <a href="#contato">Contato</a>
-      <a href="#faq">FAQ</a>
     </nav>
   </header>
-
-  <a href="#contato" class="cta-fixo" title="Simule seu empréstimo agora!">
-    <i class="fas fa-comments"></i> Simule Agora
-  </a>
 
   <main>
     <section class="hero">
       <h1>Soluções financeiras sob medida</h1>
       <p>
-        A FINANZZO conecta você aos principais bancos e instituições, garantindo
-        acesso fácil e seguro a crédito e serviços financeiros.
+        A FINANZZO conecta você aos principais bancos e instituições, garantindo acesso fácil e seguro a crédito e serviços financeiros.
       </p>
     </section>
 
@@ -448,52 +429,40 @@
       <h2>Nossos Serviços</h2>
       <div class="services">
         <div class="service-box">
-          <h3><i class="fas fa-hand-holding-usd service-icon"></i> Crédito Consignado INSS</h3>
+          <h3><i class="fas fa-file-invoice-dollar"></i> Crédito Consignado INSS</h3>
           <p>
-            Oferecemos empréstimos com desconto direto na folha para aposentados
-            e pensionistas do INSS, com taxas reduzidas e prazos flexíveis.
+            Oferecemos empréstimos com desconto direto na folha para aposentados e pensionistas do INSS, com taxas reduzidas e prazos flexíveis.
           </p>
         </div>
         <div class="service-box">
-          <h3><i class="fas fa-exchange-alt service-icon"></i> Portabilidade de Crédito</h3>
+          <h3><i class="fas fa-exchange-alt"></i> Portabilidade de Crédito</h3>
           <p>
-            Pague menos pelos seus empréstimos! A portabilidade de crédito permite
-            que você transfira seu empréstimo atual para outra instituição com
-            melhores condições e ainda ganha dinheiro de volta.
+            Pague menos pelos seus empréstimos! A portabilidade de crédito permite que você transfira seu empréstimo atual para outra instituição com melhores condições e ainda ganha dinheiro de volta.
           </p>
         </div>
         <div class="service-box">
-          <h3><i class="fas fa-sync-alt service-icon"></i> Refinanciamento de consignado</h3>
+          <h3><i class="fas fa-sync-alt"></i> Refinanciamento de consignado</h3>
           <p>
-            É uma ótima opção para quem já possui um empréstimo consignado em
-            andamento, mas precisa de um novo valor ou quer melhorar as condições
-            do contrato atual. Ao fazer o refinanciamento, além de manter o valor
-            da parcela dentro da sua margem, você ainda pode receber o famoso
-            troco direto na sua conta!
+            É uma ótima opção para quem já possui um empréstimo consignado em andamento, mas precisa de um novo valor ou quer melhorar as condições do contrato atual.
+            Ao fazer o refinanciamento, além de manter o valor da parcela dentro da sua margem, você ainda pode receber o famoso troco direto na sua conta!
           </p>
         </div>
         <div class="service-box">
-          <h3><i class="fas fa-user-tie service-icon"></i> Empréstimo Consignado para Servidores SIAPE</h3>
+          <h3><i class="fas fa-university"></i> Empréstimo Consignado para Servidores SIAPE</h3>
           <p>
-            Se você é servidor público federal, vinculado ao SIAPE (Sistema
-            Integrado de Administração de Pessoal), pode contratar o empréstimo
-            consignado com condições especiais! A parcela é descontada direto na
-            folha de pagamento, com taxas de juros bem menores do que outros
-            tipos de crédito.
+            Se você é servidor público federal, vinculado ao SIAPE (Sistema Integrado de Administração de Pessoal), pode contratar o empréstimo consignado com condições especiais! A parcela é descontada direto na folha de pagamento, com taxas de juros bem menores do que outros tipos de crédito.
           </p>
         </div>
         <div class="service-box">
-          <h3><i class="fas fa-money-check-alt service-icon"></i> Antecipação do FGTS</h3>
+          <h3><i class="fas fa-hand-holding-usd"></i> Antecipação do FGTS</h3>
           <p>
-            Adiante parcelas do seu saque-aniversário do FGTS com praticidade e
-            segurança, direto na sua conta.
+            Adiante parcelas do seu saque-aniversário do FGTS com praticidade e segurança, direto na sua conta.
           </p>
         </div>
         <div class="service-box">
-          <h3><i class="fas fa-briefcase service-icon"></i> Empréstimo CLT</h3>
+          <h3><i class="fas fa-briefcase"></i> Empréstimo CLT</h3>
           <p>
-            Crédito com desconto em folha para trabalhadores com carteira assinada.
-            Condições acessíveis e liberação rápida.
+            Crédito com desconto em folha para trabalhadores com carteira assinada. Condições acessíveis e liberação rápida.
           </p>
         </div>
       </div>
@@ -503,25 +472,16 @@
       <h2>O que dizem nossos clientes</h2>
       <div class="testimonials">
         <div class="testimonial">
-          "Excelente atendimento! Consegui meu crédito consignado com muita
-          facilidade e agilidade. Recomendo muito a Finanzzo!" — Maria A.
+          "Excelente atendimento! Consegui meu crédito consignado com muita facilidade e agilidade. Recomendo muito a Finanzzo!" — Maria A.
         </div>
         <div class="testimonial">
-          "A antecipação do FGTS me ajudou num momento difícil. Tudo feito de forma
-          transparente e segura." — João P.
+          "A antecipação do FGTS me ajudou num momento difícil. Tudo feito de forma transparente e segura." — João P.
         </div>
         <div class="testimonial">
-          "Fui muito bem atendido pela equipe da FINANZZO! Estava com dificuldades
-          para conseguir crédito, e eles me orientaram com clareza e transparência
-          em todo o processo. Em poucos dias, o dinheiro estava na conta. Recomendo
-          de olhos fechados!" — Carlos M.
+          "Fui muito bem atendido pela equipe da FINANZZO! Estava com dificuldades para conseguir crédito, e eles me orientaram com clareza e transparência em todo o processo. Em poucos dias, o dinheiro estava na conta. Recomendo de olhos fechados!" — Carlos M.
         </div>
         <div class="testimonial">
-          "Trabalho com carteira assinada e precisava de um empréstimo com urgência,
-          mas não sabia por onde começar. A equipe da FINANZZO foi super atenciosa,
-          me explicou tudo direitinho e em pouco tempo consegui a aprovação com uma
-          taxa justa. Foi tudo rápido e sem burocracia. Indico de coração!" — Juliana
-          S.
+          "Trabalho com carteira assinada e precisava de um empréstimo com urgência, mas não sabia por onde começar. A equipe da FINANZZO foi super atenciosa, me explicou tudo direitinho e em pouco tempo consegui a aprovação com uma taxa justa. Foi tudo rápido e sem burocracia. Indico de coração!" — Juliana S.
         </div>
       </div>
     </section>
@@ -529,161 +489,20 @@
     <section class="section" id="sobre">
       <h2>Sobre a FINANZZO</h2>
       <p>
-        Na FINANZZO Soluções Financeiras, nosso compromisso é ajudar você a
-        conquistar seus objetivos com segurança, clareza e as melhores condições
-        do mercado. Somos um correspondente bancário especializado em empréstimos
-        consignados, portabilidade, refinanciamento, antecipação do FGTS, entre
-        outras soluções financeiras.
-      </p>
-      <p>
-        Atendemos com foco em aposentados, pensionistas do INSS, BPC/LOAS,
-        servidores públicos (SIAPE e municipais), trabalhadores CLT e Bolsa
-        Família. Aqui, você conta com um atendimento personalizado, feito por
-        uma equipe que entende a sua realidade e que faz questão de explicar
-        cada detalhe do processo de forma simples e transparente.
-      </p>
-      <p>
-        Trabalhamos com os principais bancos do país, sempre buscando a melhor
-        opção para o seu caso.
-      </p>
-      <p>
-        Nossos valores: Ética, transparência, compromisso com o cliente, atendimento
-        humanizado.
-      </p>
-    </section>
+        Na FINANZZO Soluções Financeiras, nosso compromisso é ajudar você a conquistar seus objetivos com segurança, clareza e as melhores condições do mercado.
+        Somos um correspondente bancário especializado em empréstimos consignados, portabilidade, refinanciamento, antecipação do FGTS, entre outras soluções financeiras.
+        Atendemos com foco em aposentados, pensionistas do INSS, BPC/LOAS, servidores públicos (SIAPE e municipais), trabalhadores CLT e bolsa família. Aqui, você conta com um atendimento personalizado, feito por uma equipe que entende a sua realidade e que faz questão de explicar cada detalhe do processo de forma simples e transparente.
+        Trabalhamos com os principais bancos do país, sempre buscando a melhor opção para o seu caso.
 
-    <section class="section" id="faq">
-      <h2>Perguntas Frequentes (FAQ)</h2>
-      <div class="faq-container">
-        <div class="faq-item">
-          <div class="faq-question">O que é empréstimo consignado?</div>
-          <div class="faq-answer">
-            É um tipo de crédito pessoal com desconto das parcelas direto na folha
-            de pagamento ou benefício, como INSS ou salário, com juros menores.
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">Quem pode contratar o consignado?</div>
-          <div class="faq-answer">
-            Aposentados e pensionistas do INSS, servidores públicos federais,
-            estaduais e municipais, trabalhadores com carteira assinada e
-            beneficiários de programas sociais como Bolsa Família, conforme regras
-            específicas.
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">Posso fazer portabilidade de um empréstimo?</div>
-          <div class="faq-answer">
-            Sim! Você pode transferir seu empréstimo para outro banco com taxas
-            melhores e até receber um troco extra no bolso.
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">Qual a diferença entre refinanciamento e
-            portabilidade?</div>
-          <div class="faq-answer">
-            O refinanciamento renegocia seu contrato atual, possibilitando um novo
-            valor ou condições melhores. A portabilidade transfere seu contrato
-            para outra instituição financeira.
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">Como faço para simular um empréstimo?</div>
-          <div class="faq-answer">
-            Você pode preencher nosso formulário abaixo ou entrar em contato via
-            WhatsApp para receber uma simulação personalizada sem compromisso.
-          </div>
-        </div>
-      </div>
+        Nossos valores: Ética, transparência, compromisso com o cliente, atendimento humanizado, soluções rápidas e seguras.
+      </p>
     </section>
 
     <section class="section" id="contato">
-      <form>
-        <h2>Simule seu Empréstimo Agora</h2>
-        <label for="nome">Nome completo</label>
-        <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
-
-        <label for="telefone">Telefone / WhatsApp</label>
-        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required />
-
-        <label for="tipo-beneficiario">Você é:</label>
-        <select id="tipo-beneficiario" name="tipo-beneficiario" required>
-          <option value="" disabled selected>Selecione uma opção</option>
-          <option value="inss">Aposentado(a) / Pensionista INSS</option>
-          <option value="siape">Servidor Público (SIAPE)</option>
-          <option value="clt">Trabalhador CLT</option>
-          <option value="bpc">Beneficiário BPC/LOAS</option>
-          <option value="bolsa-familia">Beneficiário Bolsa Família</option>
-        </select>
-
-        <label for="valor">Valor aproximado do empréstimo desejado</label>
-        <input type="number" id="valor" name="valor" placeholder="Ex: 5000" min="500" max="100000" required />
-
-        <label for="mensagem">Mensagem / dúvida (opcional)</label>
-        <textarea id="mensagem" name="mensagem" rows="4" placeholder="Escreva aqui..."></textarea>
-
-        <button type="submit">Enviar Simulação</button>
-      </form>
-    </section>
-
-    <div class="lgpd-selo">
-      <i class="fas fa-shield-alt" style="color:#25D366;"></i>
-      Seus dados estão protegidos e nossa empresa segue todas as normas da
-      <strong>LGPD</strong> para garantir sua privacidade e segurança.
-    </div>
-  </main>
-
-  <a
-    href="https://wa.me/5511999999999"
-    target="_blank"
-    rel="noopener"
-    class="whatsapp-button"
-    aria-label="Contato via WhatsApp"
-    title="Fale conosco pelo WhatsApp"
-  >
-    <i class="fab fa-whatsapp"></i>
-  </a>
-
-  <footer>
-    <div class="footer-links">
-      <a href="#servicos">Serviços</a> |
-      <a href="#depoimentos">Depoimentos</a> |
-      <a href="#sobre">Sobre</a> |
-      <a href="#faq">FAQ</a> |
-      <a href="#contato">Contato</a>
-    </div>
-    <div class="social-icons">
-      <a href="https://facebook.com/suaPagina" target="_blank" aria-label="Facebook">
-        <i class="fab fa-facebook-square"></i>
-      </a>
-      <a href="https://instagram.com/suaPagina" target="_blank" aria-label="Instagram">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="https://linkedin.com/in/seuPerfil" target="_blank" aria-label="LinkedIn">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="https://youtube.com/seuCanal" target="_blank" aria-label="YouTube">
-        <i class="fab fa-youtube"></i>
-      </a>
-    </div>
-    <p>© 2025 FINANZZO Soluções Financeiras - Todos os direitos reservados</p>
-  </footer>
-
-  <script>
-    // FAQ toggle
-    document.querySelectorAll('.faq-question').forEach((question) => {
-      question.addEventListener('click', () => {
-        const item = question.parentElement;
-        item.classList.toggle('active');
-      });
-    });
-
-    // Form submission (exemplo básico)
-    document.querySelector('form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Obrigado por enviar sua simulação! Em breve entraremos em contato.');
-      this.reset();
-    });
-  </script>
-</body>
-</html>
+      <h2>Fale Conosco</h2>
+      <p>Email: finanzzo@finanzzosolucoes.com.br | Telefone: (37) 98828-5460</p>
+      <a
+        href="https://wa.me/5537988285460?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20empr%C3%A9stimo!"
+        target="_blank"
+        style="display: inline-block; margin-top: 20px; background-color: #25D366; color: white; padding: 15px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"
+        ><i class="fab fa-whatsapp" style="margin-right: 8px;"></i> F
