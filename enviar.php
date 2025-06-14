@@ -19,13 +19,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $destinatario = "finanzzo@finanzzosolucoes.com.br"; // <--- coloque seu e-mail real aqui
     $assunto = "Mensagem do site Finanzzo";
 
-    $corpo = "Nome: $nome\n";
-    $corpo .= "Telefone: $telefone\n\n";
-    $corpo .= "Mensagem:\n$mensagem\n";
-
-    $headers = "From: $email\r\n";
-    $headers .= "Reply-To: $email\r\n";
-
+ <input type="hidden" name="_captcha" value="false" />
+        <input type="text" name="nome" placeholder="Seu nome" required />
+        <input type="tel" name="telefone" placeholder="Seu telefone" required />
+        <select name="servico" required>
+          <option value="">Tipo de serviço</option>
+          <option>Consignado INSS</option>
+          <option>Portabilidade</option>
+          <option>Refinanciamento</option>
+          <option>Antecipação FGTS</option>
+          <option>Servidor Público</option>
+          <option>CLT</option>
+        </select>
+        <textarea name="mensagem" placeholder="Sua mensagem" rows="4" required></textarea>
+        <button type="submit">Enviar</button>
+        <p class="lgpd">Ao enviar, você concorda com nossa <a href="privacy.html">Política de Privacidade</a> e o uso dos seus dados conforme a LGPD.</p>
+      </form>
+    </section>
+  </main>
     if (mail($destinatario, $assunto, $corpo, $headers)) {
         // Redireciona para página de obrigado
         header("Location: obrigado.html");
