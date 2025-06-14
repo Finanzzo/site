@@ -159,12 +159,16 @@
     }
 
     .form-cta input,
-    .form-cta select {
+    .form-cta select,
+    .form-cta textarea {
       width: 100%;
       padding: 10px;
       margin-bottom: 15px;
       border-radius: 6px;
       border: 1px solid #ccc;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      resize: vertical;
     }
 
     .form-cta button {
@@ -316,6 +320,7 @@ Atendimento online em todo o Brasil. Entre em contato e descubra a melhor opçã
           <option>Servidor Público</option>
           <option>CLT</option>
         </select>
+        <textarea placeholder="Sua mensagem" rows="4" required></textarea>
         <button type="submit">Enviar</button>
         <p class="lgpd">Ao enviar, você concorda com nossa <a href="privacy.html">Política de Privacidade</a> e o uso dos seus dados conforme a LGPD.</p>
       </form>
