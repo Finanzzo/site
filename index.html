@@ -11,6 +11,7 @@
       font-family: Arial, sans-serif;
       background-color: #002D4C;
       color: white;
+      overflow-x: hidden; /* Evita scroll horizontal */
     }
 
     header {
@@ -29,31 +30,16 @@
       height: 50px;
     }
 
-    /* Botão hamburguer */
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 28px;
-      cursor: pointer;
-    }
-
-    /* Menu normal */
-    .nav-menu {
-      display: flex;
-      gap: 15px;
-    }
-
-    .nav-menu a {
+    nav a {
       color: white;
       text-decoration: none;
       margin: 0 10px;
       font-weight: bold;
     }
 
-    .nav-menu a:hover {
-      text-decoration: underline;
+    nav a:hover {
+      color: #00aaff;
+      transition: color 0.3s ease;
     }
 
     .hero {
@@ -63,6 +49,7 @@
       background-position: center;
       text-align: center;
       padding: 100px 20px;
+      margin-bottom: 40px;
     }
 
     .hero::before {
@@ -92,11 +79,44 @@
       margin: auto;
     }
 
+    /* Seções com fundo leve, bordas arredondadas e sombra */
     .section {
-      padding: 60px 20px;
-      text-align: center;
+      background: linear-gradient(to right, #003d73, #00294c);
+      padding: 70px 20px 70px 20px;
+      margin: 40px 15px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 45, 76, 0.4);
     }
 
+    /* Títulos das seções com barra decorativa */
+    .section h2 {
+      font-size: 2.4rem;
+      color: #00aaff;
+      margin-bottom: 16px;
+      position: relative;
+      padding-bottom: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section h2::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #00aaff, #005f99);
+      border-radius: 3px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      box-shadow: 0 2px 8px rgba(0, 170, 255, 0.5);
+    }
+
+    /* Serviços */
     .services {
       display: flex;
       flex-wrap: wrap;
@@ -112,6 +132,12 @@
       width: 250px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
       text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .service-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 170, 255, 0.4);
     }
 
     .service-box h3 i {
@@ -119,12 +145,13 @@
       color: #0077b6;
     }
 
+    /* Depoimentos */
     .testimonials {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 20px;
-      margin-top: 40px;
+      margin-top: 20px;
     }
 
     .testimonial {
@@ -135,8 +162,14 @@
       max-width: 500px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
       font-style: italic;
+      transition: box-shadow 0.3s ease;
     }
 
+    .testimonial:hover {
+      box-shadow: 0 12px 24px rgba(0, 170, 255, 0.4);
+    }
+
+    /* Botão WhatsApp fixo */
     .whatsapp-button {
       position: fixed;
       bottom: 20px;
@@ -163,19 +196,29 @@
       100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0); }
     }
 
+    /* Formulário de CTA */
     .form-cta {
       background: #ffffff;
       color: #002D4C;
       padding: 30px;
       max-width: 400px;
-      margin: 40px auto;
+      margin: 40px auto 60px auto;
       border-radius: 12px;
       text-align: left;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .form-cta:hover {
+      box-shadow: 0 12px 24px rgba(0, 170, 255, 0.4);
     }
 
     .form-cta h3 {
       margin-top: 0;
+      color: #0077b6;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      margin-bottom: 18px;
     }
 
     .form-cta input,
@@ -200,6 +243,11 @@
       font-weight: bold;
       border-radius: 6px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-cta button:hover {
+      background-color: #005f99;
     }
 
     .form-cta .lgpd {
@@ -208,25 +256,28 @@
       margin-top: 10px;
     }
 
+    /* Footer */
     footer {
       background-color: #001B2F;
       color: white;
       text-align: center;
       padding: 30px 20px;
+      margin-top: 20px;
     }
 
     .footer-links a {
       color: white;
       margin: 0 10px;
       text-decoration: none;
+      transition: color 0.3s ease;
     }
 
     .footer-links a:hover {
+      color: #00aaff;
       text-decoration: underline;
     }
 
-    /* Responsivo */
-
+    /* Responsividade */
     @media (max-width: 768px) {
       .services {
         flex-direction: column;
@@ -245,36 +296,14 @@
         width: 90%;
       }
 
-      /* Mostrar botão hamburguer */
-      .menu-toggle {
-        display: block;
+      .section {
+        margin: 30px 10px;
+        padding: 50px 15px;
       }
 
-      /* Menu móvel inicialmente escondido fora da tela */
-      .nav-menu {
-        position: fixed;
-        top: 70px;
-        right: 0;
-        background-color: #002D4C;
-        flex-direction: column;
-        width: 200px;
-        height: calc(100% - 70px);
-        padding: 20px;
-        box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3);
-        transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
-        z-index: 10000;
-      }
-
-      /* Quando aberto */
-      .nav-menu.open {
-        transform: translateX(0);
-      }
-
-      .nav-menu a {
-        margin: 15px 0;
-        font-size: 18px;
-        font-weight: bold;
+      .section h2 {
+        font-size: 2rem;
+        max-width: 100%;
       }
     }
   </style>
@@ -282,11 +311,8 @@
 <body>
 
   <header>
-    <img src="FINANZZO Logo.png" alt="FINANZZO Logo" />
-    <button class="menu-toggle" aria-label="Abrir menu">
-      <i class="fas fa-bars"></i>
-    </button>
-    <nav class="nav-menu">
+    <img src="FINANZZO Logo.png" alt="FINANZZO Logo">
+    <nav>
       <a href="#servicos">Serviços</a>
       <a href="#depoimentos">Depoimentos</a>
       <a href="#sobre">Sobre</a>
@@ -342,98 +368,64 @@
 
     <section class="section" id="sobre">
       <h2>Sobre a FINANZZO</h2>
-      <p>A FINANZZO Soluções Financeiras nasceu para facilitar o acesso ao crédito, oferecendo uma experiência segura, clara e acolhedora. Somos correspondentes bancários especializados que conectam pessoas aos melhores bancos e instituições financeiras do país, com foco em condições justas, atendimento humanizado e agilidade.
-
-Atendemos aposentados, pensionistas, beneficiários do BPC/LOAS, famílias do Bolsa Família, servidores públicos e trabalhadores CLT, oferecendo soluções como crédito consignado, portabilidade com troco, refinanciamento, antecipação do FGTS e empréstimos com garantia.
-
-Com a FINANZZO, você tem transparência em todas as etapas, atendimento personalizado, segurança e responsabilidade com seus dados conforme a LGPD, além de análise gratuita para aumentar suas chances de aprovação.
-
-Estamos prontos para ajudar você a realizar seus planos com tranquilidade, respeito e compromisso.
-
-Atendimento online em todo o Brasil. Entre em contato e descubra a melhor opção para o seu perfil.</p>
+      <p>A FINANZZO Soluções Financeiras nasceu para facilitar o acesso ao crédito, oferecendo uma experiência segura, clara e acolhedora. Somos correspondentes bancários especializados que conectam pessoas aos melhores bancos e instituições financeiras do país, com foco em condições justas, atendimento humanizado e agilidade.</p>
+      <p>Atendemos aposentados, pensionistas, beneficiários do BPC/LOAS, famílias do Bolsa Família, servidores públicos e trabalhadores CLT, oferecendo soluções como crédito consignado, portabilidade com troco, refinanciamento, antecipação do FGTS e empréstimos com garantia.</p>
+      <p>Com a FINANZZO, você tem transparência em todas as etapas, atendimento personalizado, segurança e responsabilidade com seus dados conforme a LGPD, além de análise gratuita para aumentar suas chances de aprovação.</p>
+      <p>Estamos prontos para ajudar você a realizar seus planos com tranquilidade, respeito e compromisso.</p>
+      <p>Atendimento online em todo o Brasil. Entre em contato e descubra a melhor opção para o seu perfil.</p>
     </section>
 
-   <section class="section contato" id="contato">
-   <h2>Fale Conosco</h2>
-   <div class="contato-container">
-    <div class="contato-info">
-      <p><i class="fas fa-map-marker-alt"></i> Divinópolis - MG</p>
-      <p><i class="fas fa-phone-alt"></i> (37) 98828-5460</p>
-      <p><i class="fas fa-envelope"></i> finanzzo@finanzzosolucoes.com.br</p>
-    </div>
-   </div>
-  </section>
+    <section class="section contato" id="contato">
+      <h2>Fale Conosco</h2>
+      <div class="contato-container" style="max-width: 400px; margin: 0 auto; color: white; font-size: 18px;">
+        <p><i class="fas fa-map-marker-alt"></i> Divinópolis - MG</p>
+        <p><i class="fas fa-phone-alt"></i> (37) 98828-5460</p>
+        <p><i class="fas fa-envelope"></i> finanzzo@finanzzosolucoes.com.br</p>
+      </div>
+    </section>
 
-  <section class="form-cta">
-    <h3>Solicite uma simulação</h3>
-    <form action="https://formsubmit.co/finanzzo@finanzzosolucoes.com.br" method="POST">
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="text" name="nome" placeholder="Seu nome" required />
-      <input type="tel" name="telefone" placeholder="Seu telefone" required />
-      <select name="servico" required>
-        <option value="">Tipo de serviço</option>
-        <option>Consignado INSS</option>
-        <option>Portabilidade</option>
-        <option>Refinanciamento</option>
-        <option>Antecipação FGTS</option>
-        <option>Servidor Público</option>
-        <option>CLT</option>
-      </select>
-      <textarea name="mensagem" placeholder="Sua mensagem" rows="4" required></textarea>
-      <button type="submit">Enviar</button>
-      <p class="lgpd">Ao enviar, você concorda com nossa <a href="privacy.html">Política de Privacidade</a> e o uso dos seus dados conforme a LGPD.</p>
-    </form>
-  </section>
+    <section class="form-cta">
+      <h3>Solicite uma simulação</h3>
+      <form action="https://formsubmit.co/finanzzo@finanzzosolucoes.com.br" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="nome" placeholder="Seu nome" required />
+        <input type="tel" name="telefone" placeholder="Seu telefone" required />
+        <select name="servico" required>
+          <option value="">Tipo de serviço</option>
+          <option>Consignado INSS</option>
+          <option>Portabilidade</option>
+          <option>Refinanciamento</option>
+          <option>Antecipação FGTS</option>
+          <option>Servidor Público</option>
+          <option>CLT</option>
+        </select>
+        <textarea name="mensagem" placeholder="Sua mensagem" rows="4" required></textarea>
+        <button type="submit">Enviar</button>
+        <p class="lgpd">Ao enviar, você concorda com nossa <a href="privacy.html">Política de Privacidade</a> e o uso dos seus dados conforme a LGPD.</p>
+      </form>
+    </section>
+
   </main>
 
-  <a
-    class="whatsapp-button"
-    href="https://wa.me/5537988285460?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20empr%C3%A9stimo!"
-    target="_blank"
-    ><i class="fab fa-whatsapp"></i
-  ></a>
+  <a class="whatsapp-button" href="https://wa.me/5537988285460?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20empr%C3%A9stimo!" target="_blank" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
   <footer>
     <div class="footer-links">
-      <a href="https://www.instagram.com/finanzzo_solucoes" target="_blank"
-        ><i class="fab fa-instagram"></i> Instagram</a
-      >
-      |
-      <a href="mailto:finanzzo@finanzzosolucoes.com.br"
-        ><i class="fas fa-envelope"></i> E-mail</a
-      >
-      |
-      <a href="https://wa.me/5537988285460" target="_blank"
-        ><i class="fab fa-whatsapp"></i> WhatsApp</a
-      >
+      <a href="https://www.instagram.com/finanzzo_solucoes" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a> |
+      <a href="mailto:finanzzo@finanzzosolucoes.com.br"><i class="fas fa-envelope"></i> E-mail</a> |
+      <a href="https://wa.me/5537988285460" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
 
     <div style="margin-top: 20px;">
       <p>Visitantes desde Junho/2025:</p>
-      <a href="https://www.hitwebcounter.com" target="_blank">
-        <img
-          src="https://hitwebcounter.com/counter/counter.php?page=8375924&style=0006&nbdigits=5&type=page&initCount=00000"
-          title="Contador de Visitas"
-          alt="Contador de Visitantes"
-        />
+      <a href="https://www.hitwebcounter.com" target="_blank" rel="noopener">
+        <img src="https://hitwebcounter.com/counter/counter.php?page=8375924&style=0006&nbdigits=5&type=page&initCount=00000"
+          title="Contador de Visitas" alt="Contador de Visitantes" />
       </a>
     </div>
     <p style="margin-top: 20px;">&copy; 2025 FINANZZO - Todos os direitos reservados.</p>
   </footer>
-
-  <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('open');
-    });
-
-    navMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('open');
-      });
-    });
-  </script>
 </body>
 </html>
