@@ -2,165 +2,337 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FINANZZO - Crédito Consignado e FGTS</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FINANZZO - Soluções Financeiras</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      background-color: #f4f4f4;
+      background-color: #002D4C;
+      color: white;
     }
+
     header {
-      background-color: #003049;
-      color: #fff;
+      background-color: #002D4C;
       padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      z-index: 999;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    header img {
+      height: 50px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+
+    .hero {
+      position: relative;
+      background-image: url('notas-100.jpg');
+      background-size: cover;
+      background-position: center;
       text-align: center;
+      padding: 100px 20px;
     }
-    header h1 {
-      margin: 0;
-      font-size: 28px;
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #002D4C;
+      opacity: 0.8;
+      z-index: 1;
     }
+
+    .hero h1,
+    .hero p {
+      position: relative;
+      z-index: 2;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+
     .section {
-      padding: 40px 20px;
+      padding: 60px 20px;
       text-align: center;
     }
-    .section h2 {
-      color: #003049;
-      font-size: 24px;
-    }
+
     .services {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
-      margin-top: 30px;
+      gap: 30px;
     }
+
     .service-box {
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: white;
+      color: #002D4C;
+      padding: 30px;
+      border-radius: 10px;
       width: 250px;
-      transition: 0.3s;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      text-align: left;
     }
-    .service-box i {
-      font-size: 28px;
-      margin-bottom: 10px;
-      color: #0077cc;
+
+    .service-box h3 i {
+      margin-right: 8px;
+      color: #0077b6;
     }
-    .service-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+
+    .testimonials {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin-top: 40px;
     }
-    form input, form select {
-      width: 100%;
-      padding: 12px;
-      border-radius: 6px;
-      border: none;
-      margin-top: 10px;
+
+    .testimonial {
+      background: white;
+      color: #002D4C;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      font-style: italic;
     }
-    form button {
-      padding: 15px;
+
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
       background-color: #25D366;
-      border: none;
       color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      animation: pulse 2s infinite;
+      text-decoration: none;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0.7); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37,211,102,0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+    }
+
+    .form-cta {
+      background: #ffffff;
+      color: #002D4C;
+      padding: 30px;
+      max-width: 400px;
+      margin: 40px auto;
+      border-radius: 12px;
+      text-align: left;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .form-cta h3 {
+      margin-top: 0;
+    }
+
+    .form-cta input,
+    .form-cta select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .form-cta button {
+      width: 100%;
+      background-color: #002D4C;
+      color: white;
+      border: none;
+      padding: 12px;
       font-weight: bold;
       border-radius: 6px;
       cursor: pointer;
+    }
+
+    .form-cta .lgpd {
+      font-size: 12px;
+      color: #333;
       margin-top: 10px;
     }
+
     footer {
-      background-color: #003049;
+      background-color: #001B2F;
       color: white;
-      padding: 30px 20px;
       text-align: center;
+      padding: 30px 20px;
     }
-    footer a {
+
+    .footer-links a {
       color: white;
-      text-decoration: none;
       margin: 0 10px;
+      text-decoration: none;
     }
-    footer a:hover {
+
+    .footer-links a:hover {
       text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .services {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .service-box {
+        width: 90%;
+      }
+
+      .form-cta {
+        width: 90%;
+      }
+
+      .testimonial {
+        width: 90%;
+      }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>FINANZZO SOLUÇÕES FINANCEIRAS</h1>
-  <p>Crédito Consignado, FGTS, Portabilidade e mais</p>
-</header>
+  <header>
+    <img src="FINANZZO Logo.png" alt="FINANZZO Logo">
+    <nav>
+      <a href="#servicos">Serviços</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
 
-<section class="section" id="servicos">
-  <h2>Nossos Serviços</h2>
-  <div class="services">
-    <div class="service-box">
-      <i class="fas fa-user-shield"></i>
-      <h3>Crédito Consignado INSS</h3>
-      <p>Empréstimos com desconto direto na folha para aposentados e pensionistas.</p>
-    </div>
-    <div class="service-box">
-      <i class="fas fa-exchange-alt"></i>
-      <h3>Portabilidade</h3>
-      <p>Transfira seu contrato para uma instituição com juros menores.</p>
-    </div>
-    <div class="service-box">
-      <i class="fas fa-redo"></i>
-      <h3>Refinanciamento</h3>
-      <p>Renove seu crédito e libere novo valor com as melhores taxas.</p>
-    </div>
-    <div class="service-box">
-      <i class="fas fa-id-badge"></i>
-      <h3>SIAPE</h3>
-      <p>Crédito exclusivo para servidores públicos federais com condições especiais.</p>
-    </div>
-    <div class="service-box">
-      <i class="fas fa-piggy-bank"></i>
-      <h3>Antecipação FGTS</h3>
-      <p>Adiante seu saque-aniversário com agilidade e segurança.</p>
-    </div>
-    <div class="service-box">
-      <i class="fas fa-briefcase"></i>
-      <h3>Crédito para CLT</h3>
-      <p>Opções de crédito para quem trabalha com carteira assinada.</p>
-    </div>
-  </div>
-</section>
+  <main>
+    <section class="hero">
+      <h1>Soluções financeiras sob medida</h1>
+      <p>A FINANZZO conecta você aos principais bancos e instituições, garantindo acesso fácil e seguro a crédito e serviços financeiros.</p>
+    </section>
 
-<section class="section" style="background-color: #001B2F; color: white;" id="formulario">
-  <h2>Solicite uma Simulação</h2>
-  <p style="max-width: 600px; margin: auto;">Preencha seus dados e um especialista da FINANZZO entrará em contato com você.</p>
-  <form style="max-width: 500px; margin: 30px auto 10px; display: flex; flex-direction: column; gap: 15px;">
-    <input type="text" placeholder="Seu nome" required>
-    <input type="tel" placeholder="Telefone com DDD" required>
-    <select required>
-      <option value="">Selecione o serviço</option>
-      <option value="inss">Crédito Consignado INSS</option>
-      <option value="portabilidade">Portabilidade</option>
-      <option value="refinanciamento">Refinanciamento</option>
-      <option value="fgts">Antecipação FGTS</option>
-      <option value="clt">Empréstimo CLT</option>
-    </select>
-    <button type="submit">Enviar</button>
-  </form>
-  <div style="text-align: center; margin-top: 20px;">
-    <i class="fas fa-lock" style="color: #00cc99; font-size: 20px;"></i>
-    <span style="font-size: 14px;">Seus dados estão protegidos conforme a LGPD</span>
-  </div>
-</section>
+    <section class="section" id="servicos">
+      <h2>Nossos Serviços</h2>
+      <div class="services">
+        <div class="service-box">
+          <h3><i class="fas fa-university"></i> Crédito Consignado INSS</h3>
+          <p>Empréstimos com desconto direto na folha para aposentados e pensionistas do INSS.</p>
+        </div>
+        <div class="service-box">
+          <h3><i class="fas fa-random"></i> Portabilidade de Crédito</h3>
+          <p>Transfira seu empréstimo atual para uma instituição com melhores condições e receba dinheiro de volta.</p>
+        </div>
+        <div class="service-box">
+          <h3><i class="fas fa-redo-alt"></i> Refinanciamento</h3>
+          <p>Melhore as condições do seu contrato atual e ainda receba um troco na conta.</p>
+        </div>
+        <div class="service-box">
+          <h3><i class="fas fa-id-badge"></i> Consignado SIAPE</h3>
+          <p>Para servidores públicos federais com taxas exclusivas e desconto em folha.</p>
+        </div>
+        <div class="service-box">
+          <h3><i class="fas fa-piggy-bank"></i> Antecipação FGTS</h3>
+          <p>Adiante parcelas do saque-aniversário com praticidade e segurança.</p>
+        </div>
+        <div class="service-box">
+          <h3><i class="fas fa-briefcase"></i> Empréstimo CLT</h3>
+          <p>Crédito com desconto em folha para trabalhadores com carteira assinada.</p>
+        </div>
+      </div>
+    </section>
 
-<footer>
-  <h4>Links Rápidos</h4>
-  <a href="#servicos">Serviços</a> |
-  <a href="#formulario">Simulação</a> |
-  <a href="#contato">Contato</a> |
-  <a href="https://instagram.com/suainstagram" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-  <p style="margin-top: 20px;">&copy; 2025 Finanzzo. Todos os direitos reservados.</p>
-</footer>
+    <section class="section" id="depoimentos">
+      <h2>O que dizem nossos clientes</h2>
+      <div class="testimonials">
+        <div class="testimonial">"Excelente atendimento! Recomendo muito a Finanzzo!" — Maria A.</div>
+        <div class="testimonial">"A antecipação do FGTS me ajudou num momento difícil." — João P.</div>
+        <div class="testimonial">"Fui muito bem atendido e consegui meu crédito rapidamente." — Carlos M.</div>
+        <div class="testimonial">"A equipe foi super atenciosa. Indico de coração!" — Juliana S.</div>
+      </div>
+    </section>
 
+    <section class="section" id="sobre">
+      <h2>Sobre a FINANZZO</h2>
+      <p>Especialistas em soluções financeiras com foco em consignado, FGTS, portabilidade e refinanciamento. Atendimento humanizado, seguro e transparente.</p>
+    </section>
+
+    <section class="section" id="contato">
+      <h2>Fale Conosco</h2>
+      <p>Email: finanzzo@finanzzosolucoes.com.br | Tel: (37) 98828-5460</p>
+      <a href="https://wa.me/5537988285460?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20empr%C3%A9stimo!"
+         target="_blank"
+         style="display:inline-block; margin-top:20px; background:#25D366; color:white; padding:12px 20px; border-radius:8px; font-weight:bold; text-decoration:none;">
+        <i class="fab fa-whatsapp"></i> Fale pelo WhatsApp
+      </a>
+    </section>
+
+    <section class="form-cta">
+      <h3>Solicite uma simulação</h3>
+      <form>
+        <input type="text" placeholder="Seu nome" required />
+        <input type="tel" placeholder="Seu telefone" required />
+        <select required>
+          <option value="">Tipo de serviço</option>
+          <option>Consignado INSS</option>
+          <option>Portabilidade</option>
+          <option>Refinanciamento</option>
+          <option>Antecipação FGTS</option>
+          <option>Servidor Público</option>
+          <option>CLT</option>
+        </select>
+        <button type="submit">Enviar</button>
+        <p class="lgpd">Ao enviar, você concorda com nossa <a href="#">Política de Privacidade</a> e o uso dos seus dados conforme a LGPD.</p>
+      </form>
+    </section>
+  </main>
+
+  <a class="whatsapp-button" href="https://wa.me/5537988285460?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20empr%C3%A9stimo!" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/finanzzo_solucoes" target="_blank"><i class="fab fa-instagram"></i> Instagram</a> |
+      <a href="mailto:finanzzo@finanzzosolucoes.com.br"><i class="fas fa-envelope"></i> E-mail</a> |
+      <a href="https://wa.me/5537988285460" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <p>Visitantes desde Junho/2025:</p>
+      <a href="https://www.hitwebcounter.com" target="_blank">
+        <img src="https://hitwebcounter.com/counter/counter.php?page=8375924&style=0006&nbdigits=5&type=page&initCount=00000"
+          title="Contador de Visitas" alt="Contador de Visitantes" />
+      </a>
+    </div>
+    <p style="margin-top: 20px;">&copy; 2025 FINANZZO - Todos os direitos reservados.</p>
+  </footer>
 </body>
 </html>
