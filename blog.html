@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog - FINANZZO</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="header-container"></div>
+
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(html => document.getElementById('header-container').innerHTML = html);
+  </script>
+
+  <main class="container">
+    <h1>Dicas Financeiras</h1>
+
+    <article>
+      <h2>Como organizar suas finanças pessoais</h2>
+      <p>Organizar as finanças pessoais é fundamental para evitar dívidas e conquistar seus objetivos financeiros.</p>
+    </article>
+
+    <article>
+      <h2>Vantagens do crédito consignado</h2>
+      <p>O crédito consignado oferece taxas de juros menores e facilidade no pagamento, ideal para aposentados e servidores.</p>
+    </article>
+
+  </main>
+
+</body>
+</html>
