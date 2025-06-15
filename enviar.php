@@ -1,32 +1,51 @@
 <?php
+// Verifica se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = htmlspecialchars($_POST['nome']);
-    $telefone = htmlspecialchars($_POST['telefone']);
-    $cpf = htmlspecialchars($_POST['cpf']);
-    $servico = htmlspecialchars($_POST['servico']);
-    $mensagem = htmlspecialchars($_POST['mensagem']);
 
-    $destino = "finanzzo@finanzzosolucoes.com.br";
-    $assunto = "Nova solicitação de simulação pelo site";
+    // Recebendo os dados do formulário
+    $nome = strip_tags(trim($_POST["nome"]));
+    $telefone = strip_tags(trim($_POST["telefone"]));
+    $cpf = strip_tags(trim($_POST["cpf"]));
+    $servico = strip_tags(trim($_POST["servico"]));
+    $mensagem = strip_tags(trim($_POST["mensagem"]));
 
-    $corpo = "Nova solicitação recebida:\n\n";
-    $corpo .= "Nome: $nome\n";
-    $corpo .= "Telefone: $telefone\n";
-    $corpo .= "CPF: $cpf\n";
-    $corpo .= "Serviço: $servico\n";
-    $corpo .= "Mensagem: $mensagem\n";
-
-    $headers = "From: contato@finanzzosolucoes.com.br\r\n";
-    $headers .= "Reply-To: $destino\r\n";
-    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-
-    if (mail($destino, $assunto, $corpo, $headers)) {
-        header("Location: obrigado.html");
-        exit();
-    } else {
-        echo "Erro ao enviar o e-mail. Por favor, tente novamente mais tarde.";
+    // Validação básica
+    if (empty($nome) || empty($telefone) || empty($cpf) || empty($servico) || empty($mensagem)) {
+        header("Location: erro.html");
+        exit;
     }
+
+    // E-mail de destino
+    $destino = "finanzzo@finanzzosolucoes.com.br"; // 🔥 Troque pelo seu e-mail
+    $assunto = "📩 Nova solicitação de simulação - FINANZZO";
+
+    // Corpo do e-mail
+    $conteudo = "Você recebeu uma nova solicitação de simulação:\n\n";
+    $conteudo .= "👤 Nome: $nome\n";
+    $conteudo .= "📞 Telefone: $telefone\n";
+    $conteudo .= "🆔 CPF: $cpf\n";
+    $conteudo .= "💼 Serviço: $servico\n";
+    $conteudo .= "📝 Mensagem: $mensagem\n";
+
+    // Cabeçalhos do e-mail
+    $headers = "From: finanzzo@finanzzosolucoes.com.br\r\n"; // 🔥 Configure seu domínio
+    $headers .= "Reply-To: $destino\r\n";
+    $headers .= "X-Mailer: PHP/" . phpversion();
+
+    // Envia o e-mail
+    if (mail($destino, $assunto, $conteudo, $headers)) {
+        // Redireciona para a página de obrigado
+        header("Location: obrigado.html");
+        exit;
+    } else {
+        // Redireciona para página de erro, se falhar
+        header("Location: erro.html");
+        exit;
+    }
+
 } else {
-    echo "Acesso inválido.";
+    // Acesso direto sem POST vai para página inicial
+    header("Location: index.html");
+    exit;
 }
 ?>
