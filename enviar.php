@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Host = 'smtp.zoho.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'finanzzo@finanzzosolucoes.com.br';
-        $mail->Password = 'SUA_SENHA_DO_EMAIL'; // Substituir pela senha correta
+        $mail->Password = '25254141Ge@'; // Substituir pela senha correta
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
 
