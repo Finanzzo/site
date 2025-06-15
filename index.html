@@ -488,10 +488,13 @@
 
 <section class="form-cta">
   <h3>Solicite uma simulação</h3>
-  <form action="enviar.php" method="POST" onsubmit="return validarFormulario()">
+  <form action="https://formsubmit.co/finanzzo@finanzzosolucoes.com.br" method="POST" onsubmit="return validarFormulario()">
+    <input type="hidden" name="_captcha" value="false" />
+    <input type="hidden" name="_next" value="https://finanzzosolucoes.com.br/obrigado.html" />
+
     <input type="text" name="nome" placeholder="Seu nome" required />
 
-    <input type="tel" name="telefone" placeholder="Seu telefone (ex: (31) 91234-5678)" required pattern="^\d{11}$" title="Digite um telefone válido com DDD (10 ou 11 dígitos)" />
+    <input type="tel" name="telefone" placeholder="Seu telefone (ex: (31) 91234-5678)" required pattern="^\d{10,11}$" title="Digite um telefone válido com DDD (10 ou 11 dígitos)" />
 
     <input type="text" name="cpf" id="cpf" placeholder="Seu CPF (ex: 123.456.789-09)" required pattern="\d{11}" title="Digite um CPF válido com 11 números" />
 
@@ -505,20 +508,18 @@
       <option>SIAPE</option>
       <option>CLT</option>
     </select>
-
     <textarea name="mensagem" placeholder="Sua mensagem" rows="4" required></textarea>
+
+    <p style="font-size: 12px; color: #555; margin-top: 10px; text-align: center;">
+      Seus dados são protegidos conforme a <strong>LGPD</strong>. Ao enviar suas informações, você concorda com a nossa
+      <a href="privacidade.html" style="color: #002D4C; text-decoration: underline;">Política de Privacidade</a>.<br />
+      Não compartilhamos suas informações com terceiros.
+    </p>
 
     <button type="submit">Enviar</button>
   </form>
-
-   <!-- Aviso LGPD com link -->
-    <p style="font-size: 12px; color: #555; text-align: center; margin-top: 10px;">
-      Seus dados são protegidos conforme a <strong>LGPD</strong>. Ao enviar suas informações, você concorda com a nossa
-      <a href="privacidade.html" style="color: #002D4C; text-decoration: underline;">Política de Privacidade</a>.
-      Não compartilhamos suas informações com terceiros.
-    </p>
-  
 </section>
+ 
   <script>
     function validarCPF(cpf) {
       cpf = cpf.replace(/[^\d]+/g,'');
