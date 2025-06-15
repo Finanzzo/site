@@ -1,45 +1,47 @@
-/* Reset e base */
+/* Reset básico */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
   background-color: #ffffff;
   color: #002D4C;
-  line-height: 1.6;
   font-size: 16px;
+  line-height: 1.6;
   min-height: 100vh;
 }
 
 a {
+  color: #ffffff;
+  text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #0099ff;
+  color: #64B5F6;
 }
 
 .container {
-  max-width: 1080px;
-  margin: 30px auto;
-  padding: 0 15px;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
 }
 
 h1, h2 {
   font-weight: 700;
   color: #002D4C;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 h1 {
-  font-size: 2.2rem;
+  font-size: 2.5rem;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 }
 
 /* Botões */
@@ -47,11 +49,11 @@ button {
   background-color: #002D4C;
   color: white;
   border: none;
-  padding: 12px 20px;
-  border-radius: 5px;
+  padding: 14px 28px;
+  border-radius: 6px;
   cursor: pointer;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.1rem;
   transition: background-color 0.3s ease;
 }
 
@@ -62,69 +64,80 @@ button:hover {
 /* Inputs */
 input, select, textarea {
   width: 100%;
-  padding: 12px;
-  margin-top: 8px;
-  border: 1.5px solid #ccc;
-  border-radius: 6px;
+  padding: 14px;
+  margin-top: 10px;
+  border: 2px solid #cfd8dc;
+  border-radius: 8px;
   font-size: 1rem;
-  font-family: inherit;
+  font-family: 'Poppins', sans-serif;
+  color: #002D4C;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #002D4C;
 }
 
 /* Depoimentos */
 .testimonial {
-  background-color: #f0f5fa;
-  border-left: 5px solid #002D4C;
-  padding: 18px 25px;
-  border-radius: 6px;
-  margin-bottom: 20px;
+  background-color: #f5f8fb;
+  border-left: 6px solid #002D4C;
+  padding: 22px 28px;
+  border-radius: 10px;
+  margin-bottom: 28px;
   font-style: italic;
+  color: #555f7a;
+  font-size: 1.1rem;
 }
 
 .testimonial .author {
-  margin-top: 12px;
+  margin-top: 15px;
   font-weight: 700;
-  color: #004080;
+  color: #002D4C;
+  font-style: normal;
+  font-size: 1rem;
 }
 
 /* Link WhatsApp */
 .whatsapp-link {
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 30px;
   background-color: #25D366;
   color: white !important;
-  text-decoration: none;
   font-weight: 700;
-  padding: 12px 25px;
-  border-radius: 8px;
+  padding: 14px 32px;
+  border-radius: 12px;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.1rem;
   transition: background-color 0.3s ease;
 }
 
 .whatsapp-link:hover {
-  background-color: #1EBE5B;
+  background-color: #1ebc58;
 }
 
 /* Link Voltar */
 .back-link {
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 30px;
   color: #002D4C;
-  text-decoration: none;
   font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
 }
 
 .back-link:hover {
   color: #004080;
 }
 
-/* Responsividade simples */
-@media (max-width: 720px) {
+/* Responsividade */
+@media (max-width: 768px) {
   .container {
-    padding: 0 10px;
+    margin: 25px auto;
+    padding: 0 15px;
   }
 
   header nav div {
-    gap: 15px !important;
+    gap: 20px !important;
   }
 }
