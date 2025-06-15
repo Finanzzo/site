@@ -1,138 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simulador de Troco - Finanzzo</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      padding: 20px;
-    }
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    h2 {
-      color: #002D4C;
-      text-align: center;
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-      color: #002D4C;
-    }
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-    button {
-      background-color: #002D4C;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 15px;
-    }
-    button:hover {
-      background-color: #004070;
-    }
-    #resultado {
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 5px;
-      background-color: #e8f4f8;
-      border: 1px solid #cce0ea;
-      color: #002D4C;
-    }
-    .whatsapp-link {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px;
-      background-color: #25D366;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      text-align: center;
-      font-weight: bold;
-    }
-    .whatsapp-link:hover {
-      background-color: #1EBE5B;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simulador de Troco - FINANZZO</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <div class="container">
-    <h2>Simulador de Troco - Portabilidade</h2>
+  <div id="header-container"></div>
+
+  <main class="container">
+    <h1>Simulador de Troco na Portabilidade</h1>
 
     <label for="parcela">Valor da Parcela Atual:</label>
-    <input type="text" id="parcela" placeholder="Ex: R$ 300,00" oninput="formatarMoeda(this)">
+    <input type="text" id="parcela" oninput="formatarMoeda(this)" placeholder="Ex: R$ 500,00" />
 
-    <label for="prazo">Quantidade de Parcelas Restantes:</label>
-    <input type="number" id="prazo" placeholder="Ex: 60">
+    <label for="qtdParcelas">Quantidade de Parcelas Restantes:</label>
+    <input type="number" id="qtdParcelas" placeholder="Ex: 72" />
 
-    <label for="saldo">Saldo Devedor Atual:</label>
-    <input type="text" id="saldo" placeholder="Ex: R$ 15.000,00" oninput="formatarMoeda(this)">
+    <label for="saldoDevedor">Saldo Devedor Atual:</label>
+    <input type="text" id="saldoDevedor" oninput="formatarMoeda(this)" placeholder="Ex: R$ 30.000,00" />
 
     <button onclick="calcularTroco()">Calcular Troco Aproximado</button>
 
-    <div id="resultado"></div>
-  </div>
+    <div id="resultado" class="resultado"></div>
+  </main>
 
-  <script>
-    function formatarMoeda(input) {
-      let valor = input.value.replace(/\D/g, '');
-      valor = (valor / 100).toFixed(2) + '';
-      valor = valor.replace('.', ',');
-      valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-      input.value = 'R$ ' + valor;
-    }
-
-    function desformatarMoeda(valor) {
-      return parseFloat(valor.replace(/[R$\s.]/g, '').replace(',', '.'));
-    }
-
-    function calcularTroco() {
-      var parcela = desformatarMoeda(document.getElementById('parcela').value);
-      var prazo = parseInt(document.getElementById('prazo').value);
-      var saldoDevedor = desformatarMoeda(document.getElementById('saldo').value);
-      var taxa = 0.0155; // 1,55% ao mês
-
-      if (isNaN(parcela) || isNaN(prazo) || isNaN(saldoDevedor)) {
-        document.getElementById('resultado').innerHTML = "Por favor, preencha todos os campos corretamente.";
-        return;
-      }
-
-      // Cálculo do novo valor financiado
-      var novoValorFinanciado = (parcela * (1 - Math.pow(1 + taxa, -prazo))) / taxa;
-
-      var troco = novoValorFinanciado - saldoDevedor;
-
-      var resultadoHtml = "";
-
-      if (troco > 0) {
-        resultadoHtml += "✅ Troco aproximado disponível: <strong>R$ " + troco.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "</strong><br><br>";
-      } else {
-        resultadoHtml += "⚠️ Nesta simulação, não foi identificado troco disponível.<br><br>";
-      }
-
-      resultadoHtml += "👉 Para conferir o valor exato e fazer sua portabilidade com segurança, fale agora com um de nossos consultores no WhatsApp:";
-
-      resultadoHtml += `<br><a class="whatsapp-link" href="https://wa.me/5537988285460" target="_blank">💬 Falar com Consultor</a>`;
-
-      document.getElementById('resultado').innerHTML = resultadoHtml;
-    }
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
