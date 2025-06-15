@@ -1,51 +1,51 @@
 <?php
-// Verifica se o formulário foi enviado
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nome = $_POST['nome'];
+    $telefone = $_POST['telefone'];
+    $cpf = $_POST['cpf'];
+    $servico = $_POST['servico'];
+    $mensagem = $_POST['mensagem'];
 
-    // Recebendo os dados do formulário
-    $nome = strip_tags(trim($_POST["nome"]));
-    $telefone = strip_tags(trim($_POST["telefone"]));
-    $cpf = strip_tags(trim($_POST["cpf"]));
-    $servico = strip_tags(trim($_POST["servico"]));
-    $mensagem = strip_tags(trim($_POST["mensagem"]));
+    $mail = new PHPMailer(true);
 
-    // Validação básica
-    if (empty($nome) || empty($telefone) || empty($cpf) || empty($servico) || empty($mensagem)) {
-        header("Location: erro.html");
-        exit;
+    try {
+        // Configurações do servidor SMTP Zoho
+        $mail->isSMTP();
+        $mail->Host = 'smtp.zoho.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'finanzzo@finanzzosolucoes.com.br';
+        $mail->Password = 'SUA_SENHA_DO_EMAIL'; // Substituir pela senha correta
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
+
+        // Remetente e destinatário
+        $mail->setFrom('finanzzo@finanzzosolucoes.com.br', 'FINANZZO');
+        $mail->addAddress('finanzzo@finanzzosolucoes.com.br');
+
+        // Conteúdo do e-mail
+        $mail->isHTML(true);
+        $mail->Subject = 'Novo pedido de simulação - Finanzzo';
+        $mail->Body = "
+            <h2>Nova solicitação de simulação</h2>
+            <p><strong>Nome:</strong> {$nome}</p>
+            <p><strong>Telefone:</strong> {$telefone}</p>
+            <p><strong>CPF:</strong> {$cpf}</p>
+            <p><strong>Serviço desejado:</strong> {$servico}</p>
+            <p><strong>Mensagem:</strong> {$mensagem}</p>
+        ";
+
+        $mail->send();
+        header('Location: obrigado.html');
+        exit();
+    } catch (Exception $e) {
+        echo "Erro no envio: {$mail->ErrorInfo}";
     }
-
-    // E-mail de destino
-    $destino = "finanzzo@finanzzosolucoes.com.br"; // 🔥 Troque pelo seu e-mail
-    $assunto = "📩 Nova solicitação de simulação - FINANZZO";
-
-    // Corpo do e-mail
-    $conteudo = "Você recebeu uma nova solicitação de simulação:\n\n";
-    $conteudo .= "👤 Nome: $nome\n";
-    $conteudo .= "📞 Telefone: $telefone\n";
-    $conteudo .= "🆔 CPF: $cpf\n";
-    $conteudo .= "💼 Serviço: $servico\n";
-    $conteudo .= "📝 Mensagem: $mensagem\n";
-
-    // Cabeçalhos do e-mail
-    $headers = "From: finanzzo@finanzzosolucoes.com.br\r\n"; // 🔥 Configure seu domínio
-    $headers .= "Reply-To: $destino\r\n";
-    $headers .= "X-Mailer: PHP/" . phpversion();
-
-    // Envia o e-mail
-    if (mail($destino, $assunto, $conteudo, $headers)) {
-        // Redireciona para a página de obrigado
-        header("Location: obrigado.html");
-        exit;
-    } else {
-        // Redireciona para página de erro, se falhar
-        header("Location: erro.html");
-        exit;
-    }
-
-} else {
-    // Acesso direto sem POST vai para página inicial
-    header("Location: index.html");
-    exit;
 }
 ?>
