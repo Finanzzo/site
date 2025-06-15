@@ -1,0 +1,130 @@
+/* Reset e base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #ffffff;
+  color: #002D4C;
+  line-height: 1.6;
+  font-size: 16px;
+  min-height: 100vh;
+}
+
+a {
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #0099ff;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 30px auto;
+  padding: 0 15px;
+}
+
+h1, h2 {
+  font-weight: 700;
+  color: #002D4C;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2.2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+/* Botões */
+button {
+  background-color: #002D4C;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #004080;
+}
+
+/* Inputs */
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+/* Depoimentos */
+.testimonial {
+  background-color: #f0f5fa;
+  border-left: 5px solid #002D4C;
+  padding: 18px 25px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.testimonial .author {
+  margin-top: 12px;
+  font-weight: 700;
+  color: #004080;
+}
+
+/* Link WhatsApp */
+.whatsapp-link {
+  display: inline-block;
+  margin-top: 20px;
+  background-color: #25D366;
+  color: white !important;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.whatsapp-link:hover {
+  background-color: #1EBE5B;
+}
+
+/* Link Voltar */
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #002D4C;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.back-link:hover {
+  color: #004080;
+}
+
+/* Responsividade simples */
+@media (max-width: 720px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  header nav div {
+    gap: 15px !important;
+  }
+}
