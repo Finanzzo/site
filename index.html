@@ -51,9 +51,22 @@
       max-width: 100%;
       height: auto;
     }
-    /* Para garantir que o botão hamburguer fique branco no fundo azul */
-    .navbar-dark .navbar-toggler-icon {
+    /* Para garantir que o botão hamburguer fique branco quadrado com canto arredondado */
+    .navbar-toggler {
+      background-color: white;
+      border-radius: 8px;
+      border: none;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .navbar-toggler-icon {
       filter: invert(1);
+      width: 24px;
+      height: 24px;
     }
     /* Cabeçalho azul escuro */
     nav.navbar {
