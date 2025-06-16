@@ -31,31 +31,28 @@
     .btn-hero:hover {
       background-color: #e0a800;
     }
-    .servico-icon {
-      font-size: 3em;
-      color: #005580;
-    }
-    .simulador-btn {
-      background-color: #003366;
-      color: white;
-      border: none;
-      padding: 12px 18px;
-      margin: 10px;
-      border-radius: 10px;
-    }
-    .depoimento {
-      background-color: #ffffff;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    footer {
-      background-color: #001f33;
-      color: white;
-      padding: 40px 0;
-    }
     .logo {
       max-height: 50px;
+      max-width: 100%;
+      height: auto;
+    }
+    @media (max-width: 576px) {
+      .hero {
+        padding: 40px 15px;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .btn-hero {
+        padding: 10px 20px;
+        font-size: 1rem;
+      }
+      .simulador-btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        margin: 5px 0;
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -64,8 +61,11 @@
 <!-- Header -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container">
-    <a class="navbar-brand" href="#"><img src="FINANZZO Logo.png" alt="FINANZZO Logo" />
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <a class="navbar-brand" href="#">
+      <img src="FINANZZO Logo.png" alt="FINANZZO Logo" class="logo" />
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -90,9 +90,9 @@
 
 <!-- Scripts Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
- </div>
-</section>
 
+</body>
+</html>
 <!-- Simuladores -->
 <section id="simuladores" class="bg-light py-5">
   <div class="container text-center">
