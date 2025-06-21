@@ -105,7 +105,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 40px 20px;
+      padding: 20px 10px;
     }
     .home-container {
       max-width: 960px;
@@ -163,24 +163,25 @@
       .home-container {
         flex-direction: column;
         text-align: center;
-        gap: 12px; /* Reduzido */
-        padding: 20px 12px; /* Reduzido */
+        gap: 4px; /* Reduzido ao máximo */
+        padding: 12px 10px;
       }
       .texto h1 {
-        font-size: 1.8rem; /* Menor */
-        margin-bottom: 8px; /* Menor */
+        font-size: 1.6rem;
+        margin-bottom: 4px;
       }
       .texto p {
-        margin: 0 auto 8px;
-        font-size: 1rem;
+        margin: 0 auto 6px;
+        font-size: 0.95rem;
       }
       .imagem img {
-        margin-bottom: 10px;
+        margin-bottom: 6px;
+        border-radius: 8px;
       }
       .btn-cta {
         width: 100%;
-        padding: 14px 0;
-        margin-top: 8px;
+        padding: 12px 0;
+        margin-top: 4px;
       }
     }
   </style>
@@ -230,26 +231,4 @@
 
   function toggleMenu() {
     const isOpen = mobileMenu.classList.toggle('open');
-    hamburgerBtn.setAttribute('aria-expanded', isOpen);
-  }
-
-  function closeMenu() {
-    mobileMenu.classList.remove('open');
-    hamburgerBtn.setAttribute('aria-expanded', false);
-  }
-
-  hamburgerBtn.addEventListener('click', toggleMenu);
-  hamburgerBtn.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      toggleMenu();
-    }
-  });
-
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
-</script>
-
-</body>
-</html>
+    hamburgerBtn.setAttri
