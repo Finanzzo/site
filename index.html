@@ -105,7 +105,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px 10px;
+      padding: 40px 20px;
     }
     .home-container {
       max-width: 960px;
@@ -163,25 +163,24 @@
       .home-container {
         flex-direction: column;
         text-align: center;
-        gap: 4px; /* Reduzido ao máximo */
-        padding: 12px 10px;
+        gap: 0; /* sem espaço entre elementos */
+        padding: 20px 12px;
       }
       .texto h1 {
-        font-size: 1.6rem;
-        margin-bottom: 4px;
+        font-size: 1.8rem;
+        margin-bottom: 0;
       }
       .texto p {
-        margin: 0 auto 6px;
-        font-size: 0.95rem;
+        margin: 0 auto 0;
+        font-size: 1rem;
       }
       .imagem img {
-        margin-bottom: 6px;
-        border-radius: 8px;
+        margin-bottom: 0;
       }
       .btn-cta {
         width: 100%;
-        padding: 12px 0;
-        margin-top: 4px;
+        padding: 14px 0;
+        margin-top: 0;
       }
     }
   </style>
@@ -231,4 +230,26 @@
 
   function toggleMenu() {
     const isOpen = mobileMenu.classList.toggle('open');
-    hamburgerBtn.setAttri
+    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+  }
+
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    hamburgerBtn.setAttribute('aria-expanded', false);
+  }
+
+  hamburgerBtn.addEventListener('click', toggleMenu);
+  hamburgerBtn.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      toggleMenu();
+    }
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>
+
+</body>
+</html>
