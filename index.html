@@ -114,14 +114,14 @@
     }
 
     main {
-      padding-top: 80px;
+      padding-top: 40px; /* reduzido para aproximar do menu */
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
       padding-left: 20px;
       padding-right: 20px;
-      padding-bottom: 40px;
+      padding-bottom: 30px;
     }
 
     .home-container {
@@ -130,7 +130,7 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 48px;
+      gap: 40px;
       width: 100%;
     }
 
@@ -139,15 +139,15 @@
     }
 
     .texto h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
       font-weight: 700;
       line-height: 1.1;
-      margin-bottom: 24px;
+      margin-bottom: 16px; /* reduzido */
     }
 
     .texto p {
-      font-size: 1.25rem;
-      margin-bottom: 24px;
+      font-size: 1.15rem;
+      margin-bottom: 20px; /* reduzido */
       font-weight: 500;
       max-width: 480px;
     }
@@ -167,15 +167,14 @@
       background-color: var(--laranja-finanzzo);
       color: var(--branco);
       font-weight: 700;
-      font-size: 1.3rem;
-      padding: 18px 40px;
+      font-size: 1.2rem;
+      padding: 16px 36px;
       border: none;
       border-radius: 14px;
       cursor: pointer;
       width: max-content;
-      box-shadow: 0 8px 20px rgba(255, 111, 0, 0.6);
+      box-shadow: 0 6px 16px rgba(255, 111, 0, 0.5);
       transition: background-color 0.3s ease;
-      margin-top: 20px;
       text-decoration: none;
       display: inline-block;
       text-align: center;
@@ -273,17 +272,14 @@
       <h1>Seu crédito consignado com segurança e atendimento personalizado</h1>
       <p>Atendimento conduzido com rigor, segurança e atenção dedicada ao cliente. Conte conosco para facilitar sua simulação.</p>
 
-      <!-- Link para simulação (versão desktop) -->
       <a href="simule-agora.html" class="btn-cta desktop-only">Quero simular agora</a>
 
-      <!-- Imagem e botão no mobile -->
       <div class="mobile-only">
         <img src="finance-illustration.jpg" alt="Ilustração financeira representando segurança e confiança" />
         <a href="simule-agora.html" class="btn-cta">Quero simular agora</a>
       </div>
     </div>
 
-    <!-- Imagem para desktop -->
     <div class="imagem desktop-only">
       <img src="finance-illustration.jpg" alt="Ilustração financeira representando segurança e confiança" />
     </div>
