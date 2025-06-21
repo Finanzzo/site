@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Finanzzo | Vantagens</title>
+<style>
+  :root {
+    --laranja-finanzzo: #FF6F00;
+    --azul-escuro: #002D4C;
+    --verde: #25D366;
+    --branco: #fff;
+  }
+
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--verde) 100%);
+    color: var(--branco);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 65px;
+    background: var(--azul-escuro);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+    z-index: 9999;
+  }
+
+  header img {
+    height: 40px;
+  }
+
+  nav {
+    display: flex;
+    gap: 24px;
+  }
+
+  nav a {
+    color: var(--branco);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  nav a:hover,
+  nav a.active {
+    background-color: var(--laranja-finanzzo);
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px;
+  }
+
+  .hamburger div {
+    width: 28px;
+    height: 3px;
+    background-color: var(--branco);
+    border-radius: 2px;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    top: 65px;
+    right: -240px;
+    width: 240px;
+    height: calc(100% - 65px);
+    background: var(--azul-escuro);
+    box-shadow: -4px 0 10px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    transition: right 0.3s ease;
+    z-index: 9998;
+  }
+
+  .mobile-menu.open {
+    right: 0;
+  }
+
+  .mobile-menu a {
+    color: var(--branco);
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-bottom: 12px;
+    transition: background-color 0.3s ease;
+  }
+
+  .mobile-menu a:hover,
+  .mobile-menu a.active {
+    background-color: var(--laranja-finanzzo);
+  }
+
+  main {
+    margin-top: 65px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  .container {
+    max-width: 1000px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--branco);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    width: 100%;
+  }
+
+  .card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .card h2 {
+    color: var(--laranja-finanzzo);
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+  }
+
+  .card p {
+    color: var(--branco);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 900px) {
+    nav {
+      display: none;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="logo-finanzzo.png" alt="Finanzzo Soluções Financeiras" />
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="quem-somos.html">QUEM SOMOS</a>
+    <a href="vantagens.html" class="active">VANTAGENS</a>
+  </nav>
+  <div class="hamburger" aria-label="Menu" aria-expanded="false" role="button" tabindex="0" id="hamburgerBtn">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html">HOME</a>
+  <a href="quem-somos.html">QUEM SOMOS</a>
+  <a href="vantagens.html" class="active">VANTAGENS</a>
+</nav>
+
+<main>
+  <section class="container">
+    <h1>Por que escolher a Finanzzo?</h1>
+    <div class="grid">
+      <div class="card">
+        <h2>Atendimento Personalizado</h2>
+        <p>Você é atendido por especialistas que acompanham seu processo de forma humanizada, clara e com total transparência.</p>
+      </div>
+      <div class="card">
+        <h2>Segurança de Dados</h2>
+        <p>Seguimos rigorosamente a Lei Geral de Proteção de Dados (LGPD), garantindo sigilo e proteção em todas as etapas.</p>
+      </div>
+      <div class="card">
+        <h2>Confiabilidade</h2>
+        <p>Somos uma empresa sólida, com credibilidade no mercado e compromisso com a ética e a responsabilidade.</p>
+      </div>
+      <div class="card">
+        <h2>Processos Ágeis e Seguros</h2>
+        <p>Nosso processo é conduzido de forma eficiente, transparente e sempre respeitando as normas do setor.</p>
+      </div>
+      <div class="card">
+        <h2>Transparência Total</h2>
+        <p>Esclarecemos todas as informações, sem letras miúdas e com total clareza sobre condições, taxas e prazos.</p>
+      </div>
+      <div class="card">
+        <h2>Compromisso com Você</h2>
+        <p>Nosso foco é encontrar as melhores soluções financeiras de acordo com seu perfil e sua necessidade, com responsabilidade.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  function toggleMenu() {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+  }
+
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    hamburgerBtn.setAttribute('aria-expanded', false);
+  }
+
+  hamburgerBtn.addEventListener('click', toggleMenu);
+  hamburgerBtn.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      toggleMenu();
+    }
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>
+
+</body>
+</html>
