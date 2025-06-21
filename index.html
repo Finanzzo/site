@@ -157,30 +157,51 @@
     .btn-cta:hover {
       background-color: #e85b00;
     }
+    /* Visibilidade controlada */
+    .desktop-only { display: block; }
+    .mobile-only { display: none; }
+
     @media (max-width: 900px) {
       nav { display: none; }
       .hamburger { display: flex; }
       .home-container {
         flex-direction: column;
         text-align: center;
-        gap: 0; /* sem espaço entre elementos */
-        padding: 20px 12px;
+        gap: 0;
+        padding: 10px 8px;
+      }
+      .texto {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
       }
       .texto h1 {
-        font-size: 1.8rem;
-        margin-bottom: 0;
+        font-size: 1.6rem;
+        margin-bottom: 8px;
+        line-height: 1.1;
       }
       .texto p {
-        margin: 0 auto 0;
         font-size: 1rem;
+        margin-bottom: 8px;
+        line-height: 1.2;
+        max-width: none;
       }
-      .imagem img {
-        margin-bottom: 0;
+      .mobile-only {
+        display: block;
       }
-      .btn-cta {
+      .desktop-only {
+        display: none;
+      }
+      .mobile-only img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 8px;
+      }
+      .mobile-only .btn-cta {
         width: 100%;
         padding: 14px 0;
-        margin-top: 0;
+        margin: 0;
       }
     }
   </style>
@@ -190,7 +211,7 @@
 <header>
   <img src="logo-finanzzo.png" alt="Finanzzo Soluções Financeiras" />
   <nav>
-    <a href="index.html" class="active" aria-current="page">HOME</a>
+    <a href="index.html" class="active">HOME</a>
     <a href="quem-somos.html">QUEM SOMOS</a>
     <a href="vantagens.html">VANTAGENS</a>
     <a href="simule-agora.html">SIMULE AGORA</a>
@@ -203,7 +224,7 @@
 </header>
 
 <nav class="mobile-menu" id="mobileMenu" aria-label="Menu móvel">
-  <a href="index.html" class="active" aria-current="page" onclick="closeMenu()">HOME</a>
+  <a href="index.html" class="active" onclick="closeMenu()">HOME</a>
   <a href="quem-somos.html" onclick="closeMenu()">QUEM SOMOS</a>
   <a href="vantagens.html" onclick="closeMenu()">VANTAGENS</a>
   <a href="simule-agora.html" onclick="closeMenu()">SIMULE AGORA</a>
@@ -214,13 +235,21 @@
     <div class="texto">
       <h1>Seu crédito consignado com segurança e atendimento personalizado</h1>
       <p>Atendimento conduzido com rigor, segurança e atenção dedicada ao cliente. Conte conosco para facilitar sua simulação.</p>
+
+      <!-- Botão só no Desktop (abaixo do texto) -->
+      <button class="btn-cta desktop-only">Quero simular agora</button>
+
+      <!-- Imagem e Botão só no Mobile (logo após o texto) -->
+      <div class="mobile-only">
+        <img src="finance-illustration.jpg" alt="Ilustração financeira representando segurança e confiança" />
+        <button class="btn-cta">Quero simular agora</button>
+      </div>
     </div>
 
-    <div class="imagem">
+    <!-- Imagem apenas no Desktop -->
+    <div class="imagem desktop-only">
       <img src="finance-illustration.jpg" alt="Ilustração financeira representando segurança e confiança" />
     </div>
-
-    <button class="btn-cta">Quero simular agora</button>
   </section>
 </main>
 
