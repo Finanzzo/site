@@ -114,7 +114,7 @@
     }
 
     main {
-      padding-top: 80px; /* alterado aqui */
+      padding-top: 80px;
       flex: 1;
       display: flex;
       justify-content: center;
@@ -176,6 +176,9 @@
       box-shadow: 0 8px 20px rgba(255, 111, 0, 0.6);
       transition: background-color 0.3s ease;
       margin-top: 20px;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
     }
 
     .btn-cta:hover {
@@ -185,7 +188,6 @@
     .desktop-only { display: block; }
     .mobile-only { display: none; }
 
-    /* RESPONSIVO */
     @media (max-width: 900px) {
       nav { display: none; }
       .hamburger { display: flex; }
@@ -271,13 +273,13 @@
       <h1>Seu crédito consignado com segurança e atendimento personalizado</h1>
       <p>Atendimento conduzido com rigor, segurança e atenção dedicada ao cliente. Conte conosco para facilitar sua simulação.</p>
 
-      <!-- Botão para desktop -->
-      <button class="btn-cta desktop-only">Quero simular agora</button>
+      <!-- Link para simulação (versão desktop) -->
+      <a href="simule-agora.html" class="btn-cta desktop-only">Quero simular agora</a>
 
       <!-- Imagem e botão no mobile -->
       <div class="mobile-only">
         <img src="finance-illustration.jpg" alt="Ilustração financeira representando segurança e confiança" />
-        <button class="btn-cta">Quero simular agora</button>
+        <a href="simule-agora.html" class="btn-cta">Quero simular agora</a>
       </div>
     </div>
 
