@@ -55,7 +55,6 @@
     nav a:hover,
     nav a.active {
       background-color: var(--laranja-finanzzo);
-      color: var(--branco);
     }
     .hamburger {
       display: none;
@@ -164,21 +163,24 @@
       .home-container {
         flex-direction: column;
         text-align: center;
-        gap: 24px;
+        gap: 12px; /* Reduzido */
+        padding: 20px 12px; /* Reduzido */
       }
       .texto h1 {
-        font-size: 2.2rem;
+        font-size: 1.8rem; /* Menor */
+        margin-bottom: 8px; /* Menor */
       }
       .texto p {
-        margin: 0 auto 16px;
+        margin: 0 auto 8px;
+        font-size: 1rem;
       }
-      .imagem {
-        order: 2;
+      .imagem img {
+        margin-bottom: 10px;
       }
       .btn-cta {
         width: 100%;
-        padding: 18px 0;
-        order: 3;
+        padding: 14px 0;
+        margin-top: 8px;
       }
     }
   </style>
