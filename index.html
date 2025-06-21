@@ -1,591 +1,284 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FINANZZO - Soluções Financeiras</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
-    }
-    .hero {
-      position: relative;
-      background: url('notas-100.jpg') no-repeat center center;
-      background-size: cover;
-      color: white;
-      padding: 80px 20px;
-      text-align: center;
-      overflow: hidden;
-    }
-    /* Overlay escuro para melhorar a leitura */
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 0;
-    }
-    .hero > .container {
-      position: relative;
-      z-index: 1;
-    }
-    .btn-hero {
-      background-color: #ffc107;
-      border: none;
-      padding: 12px 24px;
-      font-weight: bold;
-      font-size: 1.2em;
-      border-radius: 12px;
-      color: black;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-      display: inline-block;
-    }
-    .btn-hero:hover {
-      background-color: #e0a800;
-    }
-    .logo {
-      max-height: 50px;
-      max-width: 100%;
-      height: auto;
-    }
-    /* Para garantir que o botão hamburguer fique branco quadrado com canto arredondado */
-    .navbar-toggler {
-      background-color: white;
-      border-radius: 8px;
-      border: none;
-      width: 40px;
-      height: 40px;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .navbar-toggler-icon {
-      filter: invert(1);
-      width: 24px;
-      height: 24px;
-    }
-    /* Cabeçalho azul escuro */
-    nav.navbar {
-      background-color: #003b5c !important;
-    }
-    @media (max-width: 576px) {
-      .hero {
-        padding: 40px 15px;
-      }
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-      .btn-hero {
-        padding: 10px 20px;
-        font-size: 1rem;
-      }
-      .simulador-btn {
-        padding: 10px 15px;
-        font-size: 0.9rem;
-        margin: 5px 0;
-        width: 100%;
-      }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Finanzzo | Soluções Financeiras</title>
+<style>
+  :root {
+    --laranja-finanzzo: #FF6F00;
+    --azul-escuro: #002D4C;
+    --verde: #25D366;
+    --branco: #fff;
+  }
 
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--verde) 100%);
+    color: var(--branco);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 65px;
+    background: var(--azul-escuro);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+    z-index: 9999;
+  }
+
+  header img {
+    height: 40px;
+  }
+
+  nav {
+    display: flex;
+    gap: 24px;
+  }
+
+  nav a {
+    color: var(--branco);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  nav a:hover,
+  nav a.active {
+    background-color: var(--laranja-finanzzo);
+    color: var(--branco);
+  }
+
+  /* Botão hambúrguer */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px;
+  }
+
+  .hamburger div {
+    width: 28px;
+    height: 3px;
+    background-color: var(--branco);
+    border-radius: 2px;
+  }
+
+  /* Menu mobile - offcanvas */
+  .mobile-menu {
+    position: fixed;
+    top: 65px;
+    right: -240px;
+    width: 240px;
+    height: calc(100% - 65px);
+    background: var(--azul-escuro);
+    box-shadow: -4px 0 10px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    transition: right 0.3s ease;
+    z-index: 9998;
+  }
+
+  .mobile-menu.open {
+    right: 0;
+  }
+
+  .mobile-menu a {
+    color: var(--branco);
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-bottom: 12px;
+    transition: background-color 0.3s ease;
+  }
+
+  .mobile-menu a:hover,
+  .mobile-menu a.active {
+    background-color: var(--laranja-finanzzo);
+  }
+
+  main {
+    margin-top: 65px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  .home-container {
+    max-width: 960px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+    width: 100%;
+  }
+
+  .texto {
+    flex: 1;
+  }
+
+  .texto h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .texto p {
+    font-size: 1.25rem;
+    margin-bottom: 36px;
+    font-weight: 500;
+    max-width: 480px;
+  }
+
+  .btn-cta {
+    background-color: var(--laranja-finanzzo);
+    color: var(--branco);
+    font-weight: 700;
+    font-size: 1.3rem;
+    padding: 18px 40px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    width: max-content;
+    box-shadow: 0 8px 20px rgba(255, 111, 0, 0.6);
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-cta:hover {
+    background-color: #e85b00;
+  }
+
+  .imagem {
+    flex: 1;
+  }
+
+  .imagem img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+  }
+
+  /* RESPONSIVO */
+  @media (max-width: 900px) {
+    nav {
+      display: none;
     }
-  </style>
+
+    .hamburger {
+      display: flex;
+    }
+
+    .home-container {
+      flex-direction: column;
+      text-align: center;
+      gap: 32px;
+    }
+
+    .texto h1 {
+      font-size: 2.2rem;
+      max-width: 100%;
+    }
+
+    .texto p {
+      margin: 0 auto 32px;
+      max-width: 100%;
+    }
+
+    .btn-cta {
+      width: 100%;
+      padding: 18px 0;
+    }
+
+    .imagem {
+      display: none;
+    }
+  }
+</style>
 </head>
 <body>
 
-<!-- Header -->
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">
-      <img src="FINANZZO Logo.png" alt="FINANZZO Logo" class="logo" />
-    </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Alternar navegação"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
-        <li class="nav-item"><a class="nav-link" href="#simuladores">Simuladores</a></li>
-        <li class="nav-item"><a class="nav-link" href="#depoimentos">Clientes</a></li>
-        <li class="nav-item">
-          <a class="btn btn-warning ms-3" href="#contato" style="border-radius: 12px;">Simule Agora</a>
-        </li>
-      </ul>
-    </div>
+<header>
+  <img src="logo-finanzzo.png" alt="Finanzzo Soluções Financeiras" />
+  
+  <nav>
+  <a href="index.html" class="active" aria-current="page">HOME</a>
+  <a href="quem-somos.html">QUEM SOMOS</a>
+  <a href="vantagens.html">VANTAGENS</a>
+  <a href="simule-agora.html">SIMULE AGORA</a>
+  </nav>
+
+  <div class="hamburger" aria-label="Menu" aria-expanded="false" role="button" tabindex="0" id="hamburgerBtn">
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu" aria-label="Menu móvel">
+  <a href="#home" class="active" aria-current="page" onclick="closeMenu()">HOME</a>
 </nav>
 
-<!-- Hero -->
-<section class="hero">
-  <div class="container">
-    <h1 class="display-5 fw-bold">Transforme seu benefício em oportunidade</h1>
-    <p class="lead mt-3">Portabilidade com Troco, FGTS Saque-Aniversário e Consignado INSS com segurança e agilidade.</p>
-    <a href="#simuladores" class="btn btn-hero mt-4">Simular Agora</a>
-  </div>
-</section>
-
-<!-- Seção: Nossos Serviços -->
-<section id="servicos" style="background-color: #f0f4f8; padding: 50px 20px;">
-  <div style="max-width: 1200px; margin: auto; text-align: center;">
-    <h2 class="titulo-secao">Nossos Serviços</h2>
-
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-      
-      <!-- Portabilidade com Troco -->
-      <div style="flex: 1 1 300px; background-color: #ffffff; border-radius: 15px; padding: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center;">
-        <h3 style="color: #004080;">🔁 Portabilidade com Troco</h3>
-        <p>Transfira seu empréstimo consignado e receba um valor extra com taxas menores.</p>
-        <a href="#simuladores" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #004080; color: #ffffff; border-radius: 8px; text-decoration: none;">Simular Agora</a>
-      </div>
-
-      <!-- FGTS -->
-      <div style="flex: 1 1 300px; background-color: #ffffff; border-radius: 15px; padding: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center;">
-        <h3 style="color: #004080;">💰 FGTS Saque-Aniversário</h3>
-        <p>Antecipe os valores disponíveis no seu FGTS com segurança e sem complicação.</p>
-        <a href="#simuladores" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #004080; color: #ffffff; border-radius: 8px; text-decoration: none;">Simular Agora</a>
-      </div>
-
-      <!-- INSS -->
-      <div style="flex: 1 1 300px; background-color: #ffffff; border-radius: 15px; padding: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center;">
-        <h3 style="color: #004080;">👵 Consignado INSS</h3>
-        <p>Crédito com taxas baixas para aposentados e pensionistas com rapidez e clareza.</p>
-        <a href="#simuladores" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #004080; color: #ffffff; border-radius: 8px; text-decoration: none;">Simular Agora</a>
-      </div>
-
-      <!-- BPC/LOAS (WhatsApp) -->
-      <div style="flex: 1 1 300px; background-color: #ffffff; border-radius: 15px; padding: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center;">
-        <h3 style="color: #004080;">🧓 Empréstimo BPC/LOAS</h3>
-        <p>Crédito consignado para beneficiários do BPC/LOAS com/sem representante legal.</p>
-        <a href="https://wa.me/5537984097037?text=Olá! Gostaria de saber mais sobre empréstimo para BPC/LOAS." target="_blank" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #25D366; color: #ffffff; border-radius: 8px; text-decoration: none;">Falar via WhatsApp</a>
-      </div>
-
-      <!-- SIAPE (WhatsApp) -->
-      <div style="flex: 1 1 300px; background-color: #ffffff; border-radius: 15px; padding: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center;">
-        <h3 style="color: #004080;">🏛️ Consignado SIAPE</h3>
-        <p>Condições exclusivas para servidores federais ativos e aposentados.</p>
-        <a href="https://wa.me/5537984097037?text=Olá! Gostaria de simular um empréstimo consignado SIAPE." target="_blank" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #25D366; color: #ffffff; border-radius: 8px; text-decoration: none;">Falar via WhatsApp</a>
-      </div>
-
-      <!-- Prefeituras (WhatsApp) -->
-      <div style="flex: 1 1 300px; background-color: #ffffff; border-radius: 15px; padding: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center;">
-        <h3 style="color: #004080;">🏢 Servidores Municipais</h3>
-        <p>Empréstimos personalizados para funcionários de prefeituras conveniadas.</p>
-        <a href="https://wa.me/5537984097037?text=Olá! Trabalho na prefeitura e quero saber sobre crédito consignado." target="_blank" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #25D366; color: #ffffff; border-radius: 8px; text-decoration: none;">Falar via WhatsApp</a>
-      </div>
-
+<main>
+  <section id="home" class="home-container" role="banner" aria-label="Bem-vindo à Finanzzo">
+    <div class="texto">
+      <h1>Seu crédito consignado com segurança e atendimento personalizado</h1>
+      <p>Atendimento conduzido com rigor, segurança e atenção dedicada ao cliente. Conte conosco para facilitar sua simulação.</p>
+      <button class="btn-cta" onclick="alert('Aqui poderá ser o link para a próxima seção ou ação')">Quero simular agora</button>
     </div>
-  </div>
-</section>
-
-
-<!-- Scripts Bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
-
-
-</body>
-</html>
-<!-- Simuladores -->
-<section id="simuladores" class="bg-light py-5">
-  <div class="container text-center">
-    <h2 class="mb-4">Simuladores Rápidos</h2>
-    <nav role="tablist" aria-label="Navegação entre simuladores">
-      <button type="button" class="simulador-btn" onclick="mostrarSimulador('troco')" aria-controls="simulador-troco" aria-selected="true" id="tab-troco">Portabilidade com Troco</button>
-      <button type="button" class="simulador-btn" onclick="mostrarSimulador('fgts')" aria-controls="simulador-fgts" aria-selected="false" id="tab-fgts">FGTS Saque-Aniversário</button>
-      <button type="button" class="simulador-btn" onclick="mostrarSimulador('inss')" aria-controls="simulador-inss" aria-selected="false" id="tab-inss">Consignado INSS</button>
-    </nav>
-  </div>
-</section>
-
-<!-- Simulador Portabilidade com Troco -->
-<section id="simulador-troco" class="simulador-secao" role="tabpanel" aria-labelledby="tab-troco">
-  <div class="container">
-    <h2>Simulador de Portabilidade com Troco</h2>
-    <label for="cpfTroco">CPF:</label>
-    <input type="text" id="cpfTroco" maxlength="14" oninput="formatarCPF(this)" placeholder="000.000.000-00" />
-
-    <label for="parcela">Valor da Parcela Atual:</label>
-    <input type="text" id="parcela" oninput="formatarMoeda(this)" placeholder="R$ 0,00" />
-
-    <label for="prazo">Quantidade de Parcelas Restantes:</label>
-    <input type="number" id="prazo" min="1" placeholder="Número de parcelas" />
-
-    <label for="saldo">Saldo Devedor Atual:</label>
-    <input type="text" id="saldo" oninput="formatarMoeda(this)" placeholder="R$ 0,00" />
-
-    <button type="button" class="calc" onclick="validarFormulario('troco')">Calcular Troco</button>
-
-    <div id="resultado-troco" class="resultado" aria-live="polite"></div>
-
-    <p class="disclaimer">
-      Seus dados são protegidos conforme a LGPD. Ao enviar suas informações, você concorda com a nossa
-      <a href="privacidade.html" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>.<br />
-      Não compartilhamos suas informações com terceiros.
-    </p>
-  </div>
-</section>
-
-<!-- Simulador FGTS -->
-<section id="simulador-fgts" class="simulador-secao" style="display:none" role="tabpanel" aria-labelledby="tab-fgts" tabindex="-1">
-  <div class="container">
-    <h2>Simulador de Antecipação do FGTS</h2>
-    <label for="cpfFgts">CPF:</label>
-    <input type="text" id="cpfFgts" maxlength="14" oninput="formatarCPF(this)" placeholder="000.000.000-00" />
-
-    <label for="saldoFgts">Saldo FGTS Disponível:</label>
-    <input type="text" id="saldoFgts" oninput="formatarMoeda(this)" placeholder="R$ 0,00" />
-
-    <button type="button" class="calc" onclick="validarFormulario('fgts')">Calcular Antecipação</button>
-
-    <div id="resultado-fgts" class="resultado" aria-live="polite"></div>
-
-    <p class="disclaimer">
-      Seus dados são protegidos conforme a LGPD. Ao enviar suas informações, você concorda com a nossa
-      <a href="privacidade.html" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>.<br />
-      Não compartilhamos suas informações com terceiros.
-    </p>
-  </div>
-</section>
-
-<!-- Simulador Consignado INSS -->
-<section id="simulador-inss" class="simulador-secao" style="display:none" role="tabpanel" aria-labelledby="tab-inss" tabindex="-1">
-  <div class="container">
-    <h2>Simulador de Consignado INSS</h2>
-    <label for="cpfInss">CPF:</label>
-    <input type="text" id="cpfInss" maxlength="14" oninput="formatarCPF(this)" placeholder="000.000.000-00" />
-
-    <label for="rendaInss">Renda Mensal:</label>
-    <input type="text" id="rendaInss" oninput="formatarMoeda(this)" placeholder="R$ 0,00" />
-
-    <label for="prazoInss">Prazo (até 96 meses):</label>
-    <input type="number" id="prazoInss" max="96" min="1" placeholder="Número de meses" />
-
-    <button type="button" class="calc" onclick="validarFormulario('inss')">Calcular Empréstimo</button>
-
-    <div id="resultado-inss" class="resultado" aria-live="polite"></div>
-
-    <p class="disclaimer">
-      Seus dados são protegidos conforme a LGPD. Ao enviar suas informações, você concorda com a nossa
-      <a href="privacidade.html" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>.<br />
-      Não compartilhamos suas informações com terceiros.
-    </p>
-  </div>
-</section>
-
-<style>
-  nav {
-    text-align: center;
-    margin: 20px 0;
-  }
-  nav button {
-    background-color: #003b5c;
-    color: #fff;
-    padding: 12px 20px;
-    margin: 0 8px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 700;
-    min-width: 160px;
-    transition: background-color 0.3s ease;
-  }
-  nav button:hover,
-  nav button[aria-selected="true"] {
-    background-color: #005a8d;
-  }
-  .simulador-secao {
-    max-width: 600px;
-    margin: 0 auto 40px;
-    background: #fff;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  }
-  .simulador-secao label {
-    display: block;
-    margin-top: 15px;
-    font-weight: 600;
-    color: #003b5c;
-  }
-  .simulador-secao input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-  }
-  .calc {
-    margin-top: 20px;
-    width: 100%;
-    background-color: #003b5c;
-    color: #fff;
-    font-weight: 700;
-    padding: 14px;
-    font-size: 1.1rem;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 59, 92, 0.3);
-    transition: background-color 0.3s ease;
-  }
-  .calc:hover {
-    background-color: #005a8d;
-  }
-  .resultado {
-    margin-top: 20px;
-    background-color: #e8f4f8;
-    padding: 15px;
-    border-radius: 6px;
-    border: 1px solid #b5d1e3;
-    color: #003b5c;
-    font-weight: 600;
-  }
-  .disclaimer {
-    margin-top: 15px;
-    font-size: 0.85rem;
-    color: #666;
-  }
-  .disclaimer a {
-    color: #005a8d;
-    text-decoration: underline;
-  }
-  .whatsapp-link {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 15px;
-    background: #25d366;
-    color: #fff !important;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: 700;
-  }
-  .whatsapp-link:hover {
-    background: #1ebe5b;
-  }
-</style>
+    <div class="imagem">
+      <img src="finance-illustration.png" alt="Ilustração financeira representando segurança e confiança" />
+    </div>
+  </section>
+</main>
 
 <script>
-  function mostrarSimulador(id) {
-    document.querySelectorAll('.simulador-secao').forEach((s) => (s.style.display = 'none'));
-    document.getElementById('simulador-' + id).style.display = 'block';
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
 
-    // Atualiza aria-selected nos botões
-    document.querySelectorAll('nav button.simulador-btn').forEach((btn) => {
-      btn.setAttribute('aria-selected', btn.getAttribute('aria-controls') === 'simulador-' + id ? 'true' : 'false');
-    });
+  function toggleMenu() {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburgerBtn.setAttribute('aria-expanded', isOpen);
   }
 
-  document.addEventListener('DOMContentLoaded', () => mostrarSimulador('troco'));
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    hamburgerBtn.setAttribute('aria-expanded', false);
+  }
 
-  function formatarMoeda(input) {
-    let v = input.value.replace(/\D/g, '');
-    if (!v) {
-      input.value = '';
-      return;
+  hamburgerBtn.addEventListener('click', toggleMenu);
+  hamburgerBtn.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      toggleMenu();
     }
-    v = (parseInt(v) / 100).toFixed(2).toString().replace('.', ',');
-    v = v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-    input.value = 'R$ ' + v;
-  }
+  });
 
-  function desformatarMoeda(valor) {
-    if (!valor) return NaN;
-    return parseFloat(valor.replace(/[R$ .]/g, '').replace(',', '.'));
-  }
-
-  function formatarCPF(input) {
-    let v = input.value.replace(/\D/g, '');
-    if (v.length > 11) v = v.slice(0, 11);
-    v = v.replace(/(\d{3})(\d)/, '$1.$2');
-    v = v.replace(/(\d{3})(\d)/, '$1.$2');
-    v = v.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-    input.value = v;
-  }
-
-  function validarCPF(cpf) {
-    cpf = cpf.replace(/\D/g, '');
-    if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) return false;
-    let soma = 0;
-    for (let i = 0; i < 9; i++) soma += parseInt(cpf.charAt(i)) * (10 - i);
-    let resto = 11 - (soma % 11);
-    if (resto === 10 || resto === 11) resto = 0;
-    if (resto !== parseInt(cpf.charAt(9))) return false;
-    soma = 0;
-    for (let i = 0; i < 10; i++) soma += parseInt(cpf.charAt(i)) * (11 - i);
-    resto = 11 - (soma % 11);
-    if (resto === 10 || resto === 11) resto = 0;
-    if (resto !== parseInt(cpf.charAt(10))) return false;
-    return true;
-  }
-
-  function validarFormulario(tipo) {
-    let cpf = '';
-    if (tipo === 'troco') cpf = document.getElementById('cpfTroco').value;
-    else if (tipo === 'fgts') cpf = document.getElementById('cpfFgts').value;
-    else if (tipo === 'inss') cpf = document.getElementById('cpfInss').value;
-
-    if (!validarCPF(cpf)) {
-      alert('CPF inválido! Por favor, insira um CPF válido.');
-      return;
-    }
-
-    if (tipo === 'troco') calcularTroco();
-    else if (tipo === 'fgts') calcularFgts();
-    else if (tipo === 'inss') calcularInss();
-  }
-
-  function calcularTroco() {
-    const parcela = desformatarMoeda(document.getElementById('parcela').value);
-    const prazoInput = document.getElementById('prazo').value;
-    const prazo = parseInt(prazoInput);
-    const saldo = desformatarMoeda(document.getElementById('saldo').value);
-    const cpf = document.getElementById('cpfTroco').value;
-    const taxa = 0.0155;
-
-    if (isNaN(parcela) || !prazoInput || isNaN(prazo) || isNaN(saldo) || prazo <= 0) {
-      alert('Preencha todos os campos corretamente.');
-      return;
-    }
-
-    const novoFin = (parcela * (1 - Math.pow(1 + taxa, -prazo))) / taxa;
-    const troco = novoFin - saldo;
-    const trocoFormatado = troco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    const r =
-      troco > 0
-        ? `✅ Troco estimado: <strong>${trocoFormatado}</strong>`
-        : '⚠️ Nesta simulação, não foi identificado troco disponível.';
-
-    document.getElementById('resultado-troco').innerHTML = r;
-
-    const mensagem = `Simulação de Portabilidade com Troco:%0aCPF: ${cpf}%0aParcela Atual: R$ ${parcela.toFixed(2).replace('.', ',')}%0aParcelas Restantes: ${prazo}%0aSaldo Devedor: R$ ${saldo.toFixed(2).replace('.', ',')}%0a${r.replace(/<[^>]+>/g, '')}`;
-
-    if (confirm('Quer enviar sua simulação para um consultor pelo WhatsApp?')) {
-      window.open(`https://wa.me/5537984097037?text=${encodeURIComponent(mensagem)}`, '_blank');
-    }
-  }
-
-  function calcularFgts() {
-    const saldo = desformatarMoeda(document.getElementById('saldoFgts').value);
-    const cpf = document.getElementById('cpfFgts').value;
-
-    if (isNaN(saldo) || saldo <= 0) {
-      alert('Preencha o saldo FGTS corretamente.');
-      return;
-    }
-
-    const valor = saldo * 0.6;
-    const valorFormatado = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    const resultado = `💰 Valor antecipado estimado: ${valorFormatado}`;
-
-    document.getElementById('resultado-fgts').innerHTML = resultado;
-
-    const mensagem = `Simulação de Antecipação do FGTS:%0aCPF: ${cpf}%0aSaldo FGTS: R$ ${saldo.toFixed(2).replace('.', ',')}%0a${resultado}`;
-
-    if (confirm('Quer enviar sua simulação para um consultor pelo WhatsApp?')) {
-      window.open(`https://wa.me/5537984097037?text=${encodeURIComponent(mensagem)}`, '_blank');
-    }
-  }
-
-  function calcularInss() {
-    const renda = desformatarMoeda(document.getElementById('rendaInss').value);
-    const prazoInput = document.getElementById('prazoInss').value;
-    const prazo = parseInt(prazoInput);
-    const cpf = document.getElementById('cpfInss').value;
-
-    if (isNaN(renda) || !prazoInput || isNaN(prazo) || prazo <= 0) {
-      alert('Preencha todos os campos corretamente.');
-      return;
-    }
-
-    const parcela = renda * 0.35;
-    const taxa = 0.0165;
-    const total = (parcela * (1 - Math.pow(1 + taxa, -prazo))) / taxa;
-    const totalFormatado = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    const resultado = `📊 Valor estimado disponível: ${totalFormatado}`;
-
-    document.getElementById('resultado-inss').innerHTML = resultado;
-
-    const mensagem = `Simulação de Consignado INSS:%0aCPF: ${cpf}%0aRenda Mensal: R$ ${renda.toFixed(2).replace('.', ',')}%0aPrazo: ${prazo} meses%0a${resultado}`;
-
-    if (confirm('Quer enviar sua simulação para um consultor pelo WhatsApp?')) {
-      window.open(`https://wa.me/5537984097037?text=${encodeURIComponent(mensagem)}`, '_blank');
-    }
-  }
+  // Fecha menu ao clicar em link (mobile)
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
 </script>
-</section>
 
-<!-- Depoimentos -->
-<section id="depoimentos" class="py-5">
-  <div class="container">
-    <h2 class="text-center mb-4">O que dizem nossos clientes</h2>
-    <div class="row">
-      <div class="col-12 col-md-4 mb-4 mb-md-0">
-        <div class="depoimento p-3 border rounded shadow-sm h-100">
-          <p>“Fui muito bem atendida, o dinheiro caiu rápido na conta. Recomendo demais!”</p>
-          <strong>- Maria Aparecida</strong>
-        </div>
-      </div>
-      <div class="col-12 col-md-4 mb-4 mb-md-0">
-        <div class="depoimento p-3 border rounded shadow-sm h-100">
-          <p>“Transparência e rapidez. Excelente atendimento.”</p>
-          <strong>- João Pedro</strong>
-        </div>
-      </div>
-      <div class="col-12 col-md-4">
-        <div class="depoimento p-3 border rounded shadow-sm h-100">
-          <p>“Nunca foi tão fácil fazer portabilidade com troco. Obrigado equipe Finanzzo!”</p>
-          <strong>- Ana Luiza</strong>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Garantia -->
-<section class="text-center py-5" style="background-color: #005580; color: white;">
-  <div class="container">
-    <h2>🔒 Segurança garantida</h2>
-    <p>Usamos tecnologia SSL e seguimos todas as normas do Banco Central. Seus dados estão protegidos conosco.</p>
-  </div>
-</section>
-
-<!-- CTA Final -->
-<section class="text-center py-5 bg-warning" id="contato">
-  <div class="container">
-    <h2 class="mb-3">Pronto para conquistar seus objetivos?</h2>
-    <p>Simule agora e fale com um especialista da nossa equipe.</p>
-    <a href="https://bit.ly/Finanzzosolucoes" class="btn btn-dark btn-lg mt-3">Falar no WhatsApp</a>
-  </div>
-</section>
-
-<!-- Rodapé -->
-<footer style="background-color: #003b5c; color: white; padding: 20px 0;">
-  <div class="container text-center">
-    <p style="margin-bottom: 5px; font-size: 0.9rem;">&copy; 2025 Finanzzo Soluções Financeiras - Todos os direitos reservados.</p>
-    <p style="margin-bottom: 15px; font-size: 0.9rem; word-break: break-word;">
-      E-mail: finanzzo@finanzzosoluces.com.br <br />
-      Tel: (37) 98409-7037
-    </p>
-    <div>
-      <a href="https://www.facebook.com/finanzzo" target="_blank" rel="noopener" style="margin: 0 10px;">
-        <img src="facebook.png" alt="Facebook" width="30" />
-      </a>
-      <a href="https://www.instagram.com/finanzzo_solucoes" target="_blank" rel="noopener" style="margin: 0 10px;">
-        <img src="instagram.png" alt="Instagram" width="30" />
-      </a>
-    </div>
-  </div>
-</footer>
+</body>
+</html>
